@@ -1,0 +1,143 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:24px">首先是效果展示图！</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160512224454903?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">一共有两个页面~代码方面差别并不是很大。所以我只讲解其中一个页面。</span></p>
+<p><span style="font-size:24px">上代码。</span></p>
+<p><span style="font-size:24px">index.html</span></p>
+<p></p>
+<pre code_snippet_id="1681476" snippet_file_name="blog_20160512_1_2546298"  code_snippet_id="1681476" snippet_file_name="blog_20160512_1_2546298" name="code" class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;&lt;/title&gt;
+	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/css_index.css&quot;&gt;
+	&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.6.2.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot; src=&quot;js/js_index.js&quot;&gt;&lt;/script&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body  id=&quot;all&quot;&gt;
+	&lt;div style=&quot;height: 100vh;width: 100vw;background: red;text-align: center;line-height: 100vh;&quot;&gt;
+		&lt;p id=&quot;change&quot; href=&quot;1.html&quot; style=&quot;font-size: 10vh;&quot;&gt;点击切换页面&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre><span style="font-size:24px">css_index.css</span>
+<p></p>
+<p></p>
+<pre code_snippet_id="1681476" snippet_file_name="blog_20160512_2_7497551"  code_snippet_id="1681476" snippet_file_name="blog_20160512_2_7497551" name="code" class="html">*{
+	padding: 0;
+	margin: 0;
+}
+
+#all{
+	position: absolute;
+	left: -100vw;
+	transition:left 1s;
+    -moz-transition:left 1s;/* Firefox 4 */
+    -webkit-transition:left 1s; /* Safari and Chrome */
+    -o-transition:left 1s; /* Opera */
+}</pre><span style="font-size:24px">js_index.js</span>
+<p></p>
+<p></p>
+<pre code_snippet_id="1681476" snippet_file_name="blog_20160512_3_3735560"  code_snippet_id="1681476" snippet_file_name="blog_20160512_3_3735560" name="code" class="html">$(document).ready(function(){
+	 window.setTimeout(&#39;goin()&#39;,1);
+		$(&#39;#change&#39;).click(function(){
+			goout();
+			window.setInterval(&quot;window.location.href = \&quot;1.html\&quot;&quot;,1000);
+		})
+})
+	
+
+function goin(){
+	$(&#39;#all&#39;).css({left:&quot;0vw&quot;})
+
+}
+function goout(){
+	$(&#39;#all&#39;).css({left:&quot;-100vw&quot;})
+}</pre><span style="font-size:24px"><br>
+页面切换的动画效果实现的核心之处在于CSS3提供的动画过渡效果</span>
+<p></p>
+<p></p>
+<pre code_snippet_id="1681476" snippet_file_name="blog_20160512_4_3703324"  code_snippet_id="1681476" snippet_file_name="blog_20160512_4_3703324" name="code" class="html">transition:left 1s;
+-moz-transition:left 1s;/* Firefox 4 */
+-webkit-transition:left 1s; /* Safari and Chrome */
+-o-transition:left 1s; /* Opera */</pre><span style="font-size:24px">没错！transition就是实现的关键~~~！</span>
+<p></p>
+<p><span style="font-size:24px">至于-moz- &nbsp; -wekit- &nbsp;-o-这些前缀是针对不同浏览器用来适配的~</span></p>
+<p><span style="font-size:24px">闲来讲解一下transition的用法吧</span></p>
+<p><span style="font-size:24px">transition:css time;<br>
+</span></p>
+<p><span style="font-size:24px">css=代表赋予动画的CSS样式，time=代表动画的过度时间</span></p>
+<p><span style="font-size:24px">比如transition:width 1s;</span></p>
+<p><span style="font-size:24px">意思当宽度发生变化的时候，会有1s的时间过度。</span></p>
+<p><span style="font-size:24px">比如宽度10px变成100px,在上述css的修饰下，10px并不会瞬间变成100px;会在1s内从10px逐渐变成100px;示意图如下</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160512225829603?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">再来谈谈JS，window.setTimeout(a,b)</span></p>
+<p><span style="font-size:24px">a=要执行的函数或者语句</span></p>
+<p><span style="font-size:24px">b=延迟的时间</span></p>
+<p><span style="font-size:24px">注意！！！！setTimeout中的a是在延时b后只执行一次</span></p>
+<p><span style="font-size:24px">而setInterval是每隔b执行一次a!</span></p>
+<p><span style="font-size:24px">为什么我们要把页面的进入动画延时1ms执行页面的goin动画呢？</span></p>
+<p><span style="font-size:24px">因为如果不延迟1ms是看不见动画的，JS会在预加载的时间就把你函数里的内容执行了，也就是说你改变的left或者top&#20540;会直接跳过transition,并不会产生对应的效果~</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">那么为什么页面的切出动画可以直接用gout函数呢，因为那是在页面加载完成以后触发了点击事件以后才会执行的函数，这个时候页面已经加载完成了，就不会跳过transition~</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">那么为什么在goout中要延时1s执行window.location.href呢？</span></p>
+<p><span style="font-size:24px">因为我们在css样式表中设置了动画的时间为1s。如果直接执行window.location.href的话，就看不见页面切换动画了，会直接跳转到指定的页面。</span></p>
+<p><span style="font-size:24px">如果延迟时间小于1s会导致动画没有执行完全就切换的下一个页面，可能会影响美观~</span></p>
+<p><span style="font-size:24px">当然你有特殊需求也可以自行抉择~~~！</span></p>
+<p><span style="font-size:24px">下面附上打包后可以直接运行代码的下载地址和transition参考~</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">打包代码：http://download.csdn.net/detail/shanamaid/9518519</span></p>
+<p><span style="font-size:24px">transiton参考：http://blog.csdn.net/shanamaid/article/details/51388413</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

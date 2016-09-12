@@ -1,0 +1,130 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:24px">今天和同学交流关于鼠标悬浮在图片上时显示的遮掩层，其实完全可以利用CSS中的伪类:hover来实现，说到这里很多有一定基础经验的人肯定已经想到了。</span></p>
+<p><span style="font-size:24px">考虑到还有小白同学，我也花了几分钟写了一段代码，其实非常简单，先上图片看一下效果吧</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160721155047214?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:24px">下面来讲一讲具体思路。</span></p>
+<p><span style="font-size:24px">首先我们在body中写一个</span></p>
+<p><span style="font-size:24px">&lt;div&gt;&lt;/div&gt;</span></p>
+<p><br>
+</p>
+<p><span style="font-size:24px">这个块用来包含2部分内容，一部分是Img，即图片，另一部分则是遮掩层，用一个块div来表示。此时我们得到如下代码</span></p>
+<p><span style="font-size:24px">&lt;div &gt;</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"></span>&lt;img src =&quot;xxx.jpg&quot;&gt;</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"></span>&lt;div&gt;内容&lt;/div&gt;</span></p>
+<p><span style="font-size:24px">&lt;/div&gt;</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">样式就各位同学自己去加了，但是要注意一点，一般情况下。</span></p>
+<p><span style="font-size:24px">最外面的块的宽高=img宽高=里面的块的宽高</span></p>
+<p><span style="font-size:24px">此时出现了一个尴尬的情况，块内的内容的高度是块高度的2倍。</span></p>
+<p><span style="font-size:24px">如下图（为了比较，没有让右边内容重合在左边）</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160721155751541?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:24px">最里面的块在黑线以下，即超出了最外面块的高度设置</span></p>
+<p><span style="font-size:24px">也有很多解决办法，但是博主选择的办法是让最里面的块脱离文档流。</span></p>
+<p><span style="font-size:24px">利用的是相对定位和绝对定位。</span></p>
+<p><span style="font-size:24px">则领最外面的块css样式设置position：relative;</span></p>
+<p><span style="font-size:24px">最里面的块css样式设置position:absolute;top:0px;</span></p>
+<p><span style="font-size:24px">这样设置后，三个块就重合在一起了。</span></p>
+<p><span style="font-size:24px">为什么给最外面的块要设置相对定位呢？</span></p>
+<p><span style="font-size:24px">因为是为了给里面的块提供定位的位置。</span></p>
+<p><span style="font-size:24px">如果没设置的话，最里面的块就会以上一次出现的绝对定位或者或者相对定位做完参照点。</span></p>
+<p><span style="font-size:24px">同时最外面的块因为设置的是relative而不是absolute，在作为参照点的同时也不会脱离文档流。</span></p>
+<p><span style="font-size:24px">而最里面的高度为了让它的高度消失，采用的absolute让它脱离文档流</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">接下来是利用hover来控制最里面的div的隐藏于消失了。</span></p>
+<p><span style="font-size:24px">上面已经把原理说清楚了，下面就是代码了。</span><pre code_snippet_id="1775799" snippet_file_name="blog_20160721_1_2506193"  name="code" class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	.cover{
+		width: 800px;
+		margin: 0 auto;
+	}
+
+	.cover &gt; img{
+		width: 800px;
+		height: 450px;
+		position: relative;
+	}
+
+	.cover &gt; div{
+		position: absolute;
+		top: 0px;
+		width: 800px;
+		height: 450px;
+		background: rgba(0,0,0,0.8);
+		text-align: center;
+		line-height: 450px;
+		font-size: 2em;
+		color: white;
+		display: none;
+	}
+
+	.cover:hover &gt;div{
+		display: block;
+	}
+&lt;/style&gt;
+&lt;body&gt;
+	&lt;div class=&quot;cover&quot;&gt;
+		&lt;img src=&quot;1.jpg&quot;&gt;
+		&lt;!-- 用于显示的cover --&gt;
+		&lt;div&gt;
+			我是萌萌的Shana
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>完整文件链接</p>
+<p><span style="font-size:24px">http://download.csdn.net/detail/shanamaid/9582387<br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><br>
+</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

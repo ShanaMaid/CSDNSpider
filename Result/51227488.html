@@ -1,0 +1,64 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:24px"><img alt="大笑" src="http://static.blog.csdn.net/xheditor/xheditor_emot/default/laugh.gif">前几天重装了系统后安装MySQL后发现按照最开始的安装方式会失败。</span></p>
+<p><span style="font-size:24px">最开始安装MySQL配置了环境变量后都是打开cmd，依次输入以下命令：</span></p>
+<p><span style="font-size:24px">1、mysqld -install &nbsp; //安装Mysql，添加mysql服务</span></p>
+<p><span style="font-size:24px">2、net start mysql &nbsp;//启动mysql</span></p>
+<p><span style="font-size:24px">3、mysql &nbsp; //默认以root用户进入mysql,都知道刚安装好的mysql的root用户是没有密码的</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">但是这种安装办法在mysql官网下载的最新版本的mysql安装会失败，为什么呢？</span></p>
+<p><span style="font-size:24px">因为mysql版本更新后在5.6后的某个版本删除了压缩文件里的data文件夹，具体原因不是很清楚。这就导致了我们依次执行上述命令会导致mysql无法启动以及进入。</span></p>
+<p><span style="font-size:24px">按照官方文档的说明，我们应该这样进行安装。</span></p>
+<p><span style="font-size:24px">还是先打开cmd,依次输入以下指令：</span></p>
+<p><span style="font-size:24px">1、mysqld -initialize //初始化mysql，这会在根目录生成data文件夹，过程会有点长，稍微等待一下。</span></p>
+<p></p>
+<p><span style="font-size:24px">2、mysqld -install &nbsp; //安装Mysql，添加mysql服务</span></p>
+<p><span style="font-size:24px">3、net start mysql &nbsp;//启动mysql</span></p>
+<p><span style="font-size:24px">4、mysql &nbsp; //默认以root用户进入mysql,都知道刚安装好的mysql的root用户是没有密码的</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">OK，这样就没有问题了~~~~！</span></p>
+<p><span style="font-size:24px">最后这次得出的经验就是惯用的方法失效的时候，各位还是去看看官方文档吧。</span></p>
+<span style="font-size:24px"><br>
+</span>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><br>
+</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

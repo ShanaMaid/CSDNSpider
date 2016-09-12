@@ -1,0 +1,81 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<pre name="code" class="html">#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(){
+	int fd[2];//管道
+	char inbuff[64],outbuff[64];
+	pid_t pid1,pid2;
+	pipe(fd);//创建管道  fd[1]用于写数据，fd[0]用于读数据
+	pid1=fork();//创建子进程1
+	if(pid1==0){
+	close(fd[0]);//关闭管道用于读数据的一侧
+	sprintf(inbuff,&quot;Child 1 is sending!&quot;);
+	write(fd[1],inbuff,32);//在子进程1中往管道写32字节的的数据
+	sleep(5);
+	exit(0);
+	}
+	else if(pid1&gt;0){
+	waitpid(pid1,NULL,0);//等待子进程1执行完毕
+	pid2=fork();//创建子进程2
+	if(pid2==0){
+	close(fd[0]);//关闭管道用于读数据的一侧
+	sprintf(inbuff,&quot;Child 2 is sending!&quot;);
+	write(fd[1],inbuff,32);//在子进程2中往管道继续写32字节的的数据
+
+	sleep(5);
+	exit(0);
+	}
+	else if(pid2&gt;0){
+	close(fd[1]);//关闭用于写数据的一侧
+	read(fd[0],outbuff,32);//父进程读取管道中的32字节的数据
+	printf(&quot;%s\n&quot;,outbuff);
+	read(fd[0],outbuff,32);//父进程继续读取管道中的32字节的数据
+
+	printf(&quot;%s\n&quot;,outbuff);
+	}
+	}
+	return 0;
+}</pre>
+<p><span style="font-size:24px">关键函数fork &nbsp; pipe可以参考我转载的两篇博客：</span></p>
+<p><span style="font-size:24px">fork:http://blog.csdn.net/ShanaMaid/article/details/51345361</span></p>
+<p><span style="font-size:24px">pipe:http://blog.csdn.net/myarrow/article/details/9037135</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

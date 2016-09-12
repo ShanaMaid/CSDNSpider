@@ -1,0 +1,834 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net accounts</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：将用户帐户数据库升级并修改所有帐户的密码和登录请求。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net accounts [/forcelogoff:{minutes | no}] [/minpwlen:length]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+[/maxpwage:{days|unlimited}][/minpwage:days] [/uniquepw:number] [/sync] [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无：即键入不带参数的net accounts，命令显示密码、登录限制和域信息的当前配置。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/forcelogoff:{minutes | no}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置当用户帐户或有效登录时间到期时在结束用户与服务器的会话前要等待的分钟数。no 选项防止强制注销。默认设置是 no。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定了 /forcelogoff:minutes 选项后，系统在强制用户离开网络的 minutes 分钟前发送警告。如果任何文件被打开，系统将警告用户。如果 minutes 少于 2，系统将警告用户立即从网络注销。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/minpwlen:length</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置用户帐户密码的最少<a target="_blank" target="_blank" href="http://baike.baidu.com/view/263416.htm" style="color:rgb(19,110,194); text-decoration:none">字符</a>数。范围是 0-127 个字符，默认是 6 个字符。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：设置不少于 10 个字符的用户密码</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net accounts /minpwlen:10</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（4）/maxpwage:{days | unlimited}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置用户帐户密码有效天数的最大&#20540;。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/maxpwage:unlimited 设置帐户密码永远有效。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/maxpwage 选项必须大于 /minpwage，（也就是如果以前设置了/minpwlen:30，那么days取&#20540;必须大于30）范围是 1-49,710 天（无限），默认是 90 天。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（5）/minpwage:days</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置在用户可以更改新密码前的最小天数。数&#20540; 0 设置无限短时间。范围是 0-49,710 天，默认&#20540;是 0 天。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（6）/uniquepw:number</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+要求用户不对 number 次密码更改重复相同的密码。范围是 0-24 次密码更改，默认&#20540;是 5 次密码更改。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：防止用户每少于3天更改一次密码，强制用户每15天更改一次密码，并在登录时间到期后用2分钟警告强制用户注销。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net accounts /forcelogoff:2 /minpwage:3　/maxpwage:15</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（7）/sync</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+更新所有成员服务服务器的用户帐户数据库。当在<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1058911.htm" style="color:rgb(19,110,194); text-decoration:none">主域控制器</a>上使用时，使域中的所有<a target="_blank" target="_blank" href="http://baike.baidu.com/view/6241731.htm" style="color:rgb(19,110,194); text-decoration:none">备份域控制器</a>同步。当在备份域控制器上使用时，使备份域控制器只与主域控制器同步。该命令只适用于
+ Windows NT/2000 Server 域成员计算机。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（8）/domain</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+对当前域的主域控制器执行操作。否则，操作在本地计算机上执行。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+该参数只适用于属 Windows NT/2000 Server 域成员的 Windows 2000 Workstation / Professional 计算机。默认情况下，Windows NT/2000 Server 计算机在主域控制器上执行操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net computer</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：从域数据库中添加或删除计算机，所有计算机的添加和删除都会转发到<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1058911.htm" style="color:rgb(19,110,194); text-decoration:none">主域控制器</a>。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net computer \\computername {/add | /del}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）\\computername</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定要从域中添加或删除的计算机名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/add</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将特定的计算机添加到域中。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：将计算机bb添加到登录的域中。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net computer \\bb /add</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/del</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+从域中删除指定的计算机。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：将计算机bb从登录的域中删除。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net computer \\bb /del</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net config</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：显示当前运行的可配置服务，或显示并更改某项服务的设置。更改立即生效并且是永久的</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net config [service [options]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net config 命令显示可配置服务的列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+通过net config命令进行配置的服务(server或workstation)</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）options</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+服务的特定选项。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net config server</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：更改可配置&quot;服务器&quot;服务参数。更改立即生效，并且永久保持。但是并非所有的&quot;服务器&quot;服务的参数都能使用 net config Server 命令进行更改，net config server 显示可包含其他信息，包括以下关于服务器的信息：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+1．服务器的计算机名、描述注释和软件版本。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+2．网络描述。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+3．服务器的隐藏设置。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+4．可以使用服务器的共享资源的最多用户数。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+5．可以打开的服务器文件的最大数量。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+6．空闲会话时间设置。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net config server [/autodisconnect:time] [/srvcomment:&quot;text &quot;] [/hidden:{yes | no}]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入 net config server 命令显示&quot;服务器&quot;服务的当前配置</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/autodisconnect:time</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置在断开连接前用户会话可以不活动的最大分钟数。可以指定-1不断开连接。范围从-1到65535分钟，默认&#20540;是15分钟。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：在10分钟的非活动状态后断开用户连接。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net config server /autodisconnect:10</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/srvcomment:&quot;text&quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+用net view命令，为在屏幕上显示出来的服务器添加注释。注释可以包含多达48个<a target="_blank" target="_blank" href="http://baike.baidu.com/view/263416.htm" style="color:rgb(19,110,194); text-decoration:none">字符</a>（24个汉字）。给文本加上引号。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（4）/hidden:{yes | no}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定服务器的计算机名是否在服务器<a target="_blank" target="_blank" href="http://baike.baidu.com/view/2508903.htm" style="color:rgb(19,110,194); text-decoration:none">显示列表</a>上显示。注意隐藏的服务器将不会改变服务器上的权限。默认设置是 no。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：从可用服务器列表中隐藏服务器的计算机名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net config server /hidden:yes</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net config workstation</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：显示更改可配置工作站服务参数。更改立即生效，并且永久保持。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+并非所有的工作站服务参数都能使用 net config workstation 命令进行更改。其他参数可以在配置注册表时修改。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net config workstation [/charcount:bytes] [/chartime:msec] [/charwait:sec]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入 net config workstation 命令显示本地计算机的当前配置。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/charcount:bytes</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定在将数据发送到通讯设备之前Windows 收集的数据量。如果还设置了 /chartime:msec，Windows 将执行第一个满足的</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+选项。范围从0到-65535字节，默认&#20540;是16字节。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/chartime:msec</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置 Windows在将数据发送到通讯设备前收集数据的毫秒数。如果还设置了 /charcount:bytes，Windows 2000 将执行第</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+一个满足的选项。范围从0到65535000毫秒，默认是250毫秒。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（4）/charwait:sec</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将Windows等待通讯设备的秒数设置为可用。范围从0到65535秒，默认&#20540;是3600秒。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+实例：要设置在将数据发送到最大1000毫秒的通讯设备之前Windows等待。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net config workstation /chartime:1000</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+六、Net Continue</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：重新激活挂起的服务</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net continue service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+能够继续运行的服务，包括：file server for macintosh（该服务仅限于 Windows NT Se</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+rver），ftp publishing service,lpdsvc,net logon,network dde，network dde dsdm</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+，nt lm security support provider，remoteboot（该服务仅限于 Windows NT Server），</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+remote access server,schedule，server，simple tcp/ip services 及 workstation</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net File</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：显示某服务器上所有打开的共享文件名及锁定文件数。该命令也可以关闭个别文件并取消文</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+件锁定。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net file [id [/close]]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net file 可获得服务器上打开文件的列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+id</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+文件标识号。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/close</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+关闭打开的文件并释放锁定记录。请从共享文件的服务器中键入该命令。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Group</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：在 Windows NT Server 域中添加、显示或更改<a target="_blank" target="_blank" href="http://baike.baidu.com/view/3115316.htm" style="color:rgb(19,110,194); text-decoration:none">全局组</a>。该命令仅在 Windows NT Server 域</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+中可用。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net group [groupname [/comment:&quot;text &quot;]] [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net group groupname {/add [/comment:&quot;text &quot;] | /delete} [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net group groupname username [ …] {/add | /delete} [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net group 可以显示<a target="_blank" target="_blank" href="http://baike.baidu.com/view/687795.htm" style="color:rgb(19,110,194); text-decoration:none">服务器名称</a>及服务器的组名称。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+groupname</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+要添加、扩展或删除的组。仅提供某个组名便可查看组中的用户列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/comment:&quot;text &quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+为新建组或现有组添加注释。注释最多可以是 48 个<a target="_blank" target="_blank" href="http://baike.baidu.com/view/263416.htm" style="color:rgb(19,110,194); text-decoration:none">字符</a>，并用引号将注释文字引住。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/domain</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+在当前域的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1058911.htm" style="color:rgb(19,110,194); text-decoration:none">主域控制器</a>中执行该操作，否则在本地计算机上执行操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+该参数仅用于作为 Windows NT Server 域成员的 Windows NT Workstation 计算机。Windo</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+ws NT Server 计算机默认为在主域控制器中操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+username[ …]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+列表显示要添加到组或从组中删除的一个或多个用户。使用空&#26684;分隔多个用户名称项。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（4）/add</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+添加组或在组中添加用户名。必须使用该命令为添加到组中的用户建立帐号。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（5）/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+删除组或从组中删除用户名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Help</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：提供<a target="_blank" target="_blank" href="http://baike.baidu.com/view/41338.htm" style="color:rgb(19,110,194); text-decoration:none">网络命令</a>列表及帮助主题，或提供指定命令或主题的帮助。可用网络命令列于 N 下面的</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+“命令参考”中“命令”窗口内。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net help [command]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net command {/help | /?}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net help 显示能够获得帮助的命令列表和帮助主题。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+command</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+需要其帮助的命令，不要将 net 作为 command 的一部分。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/help</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+提供显示帮助文本方式选择。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/?</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+显示命令的正确语法。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Helpmsg</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：提供 Windows NT错误信息的帮助。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net helpmsg message#</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+message#</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+需要其帮助的 Windows NT 消息的四位代码。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Localgroup</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：添加、显示或更改<a target="_blank" target="_blank" href="http://baike.baidu.com/view/119283.htm" style="color:rgb(19,110,194); text-decoration:none">本地组</a>。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net localgroup [groupname [/comment:&quot;text &quot;]] [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net localgroup groupname {/add [/comment:&quot;text &quot;] | /delete} [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net localgroup groupname name [ …] {/add | /delete} [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（1）无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net localgroup 将显示服务器名称和计算机的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/119283.htm" style="color:rgb(19,110,194); text-decoration:none">本地组</a>名称。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+groupname</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+要添加、扩充或删除的本地组名称。只提供 groupname 即可查看用户列表或本地组中的全局</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+组。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（2）/comment: &quot;text &quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+为新建或现有组添加注释。注释文字的最大长度是 48 个字符，并用引号引住。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（3）/domain</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+在当前域的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1058911.htm" style="color:rgb(19,110,194); text-decoration:none">主域控制器</a>中执行操作，否则仅在本地计算机上执行操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+该参数仅应用于 Windows NT Server 域中的 Windows NT Workstation 计算机。Windows NT Server 计算机默认为在主域</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+控制器中操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+name [ …]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+列出要添加到<a target="_blank" target="_blank" href="http://baike.baidu.com/view/119283.htm" style="color:rgb(19,110,194); text-decoration:none">本地组</a>或从本地组中删除的一个或多个用户名或组名，多个用户名或组名之间以空&#26684;分隔。可以是本地</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+用户、其他域用户或<a target="_blank" target="_blank" href="http://baike.baidu.com/view/3115316.htm" style="color:rgb(19,110,194); text-decoration:none">全局组</a>，但不能是其他本地组。如果是其他域的用户，要在用户名前加域名（例如SALESRALPHR）。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（4）/add</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将全局组名或用户名添加到本地组中。在使用该命令将用户或全局组添加到本地组之前，必须为其建立帐号。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+（5）/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+从本地组中删除组名或用户名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Name</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：添加或删除消息名（有时也称别名），或显示计算机接收消息的名称列表。要使用 net name 命令，计算机中必须运行<a target="_blank" target="_blank" href="http://baike.baidu.com/view/55886.htm" style="color:rgb(19,110,194); text-decoration:none">信使服务</a>。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net name [name [/add | /delete]]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net name 将列出当前使用的名称。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+name</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定接收消息的名称。名称最多为 15 个字符。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/add</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将名称添加到计算机中。/add 是可选项，键入 net name name 与键入 net name name /add 相同。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+从计算机中删除名称。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Pause</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+暂停正在运行的服务。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net pause service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指下列服务：file server for macintosh（仅限于 Windows NT Server）、ftp publishing service、lpdsvc、net logon、network dde、network dde dsdm、nt lm security support provider、remoteboot（仅限于 Windows NT Server）、remote access server、schedule、server、simple tcp/ip services 或 workstation。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Print</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：显示或控制打印作业及打印队列。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net print \computername sharename</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net print [\computername ] job# [/hold | /release | /delete]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+computername</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+共享打印机队列的计算机名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+sharename</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+打印队列名称。当包含 computername 与 sharename 时，使用<a target="_blank" target="_blank" href="http://baike.baidu.com/view/572694.htm" style="color:rgb(19,110,194); text-decoration:none">反斜杠</a>() 将它们分开。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+job#</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+在打印机队列中分配给打印作业的标识号。有一个或多个打印机队列的计算机为每个打印作业分配唯一标识号。如果某个作业号用于共享打印机队列中，则不能指定给其他作业，也不能分配给其他打印机队列中的作业。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/hold</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+使用 job# 时，在打印机队列中使打印作业等待。打印作业停留在打印机队列中，并且其他打印作业只能等到释放该作业之后才能进入。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/release</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+释放保留的打印作业。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+从打印机队列中删除打印作业。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Send</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：向网络的其他用户、计算机或通信名发送消息。要接收消息必须运行信使服务。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net send {name | * | /domain[:name] | /users} message</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数 ：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+name</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+要接收发送消息的用户名、计算机名或通信名。如果计算机名包含空字符，则要将其用引号(&quot; &quot;) 引住。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+*</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将消息发送到组中所有名称。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/domain[:name]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将消息发送到<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1305440.htm" style="color:rgb(19,110,194); text-decoration:none">计算机域</a>中的所有名称。如果指定 name，则消息将发送到指定域或组中的所有名称。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/users</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将消息发送到与服务器连接的所有用户。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+message</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+作为消息发送的文本。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Session</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：列出或断开本地计算机和与之连接的客户端的会话。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net session [\computername] [/delete]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net session 可以显示所有与本地计算机的会话的信息。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+\computername</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+标识要列出或断开会话的计算机。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+结束与 \computername 计算机会话并关闭本次会话期间计算机的所有打开文件。如果省略\computername 参数，将取消与本地计算机的所有会话。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Share</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：创建、删除或显示共享资源。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net share sharename</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net share sharename=drive:path [/users:number | /unlimited] [/remark:&quot;text&quot;]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net share sharename [/users:number | unlimited] [/remark:&quot;text&quot;]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net share {sharename | drive:path} /delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net share 将显示本地计算机上所有共享资源的信息。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+sharename</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+是共享资源的网络名称。键入带 sharename 的 net share 命令，只显示该共享信息。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+drive:path</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定共享目录的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/25377.htm" style="color:rgb(19,110,194); text-decoration:none">绝对路径</a>。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/users:number</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置可同时访问共享资源的最大用户数。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/unlimited</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+不限制同时访问共享资源的用户数。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/remark:&quot;text &quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+添加关于资源的注释，注释文字用引号引住。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+停止共享资源。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Start</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：启动服务，或显示已启动服务的列表。如果服务名是两个或两个以上的词，如 Net Logon 或Computer Browser，则必须用引号 (&quot;) 引住..</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net start [service]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net start 则显示运行服务的列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+包括下列服务：alerter、client service for netware、clipbook server、computer browser、dhcp client 、directory replicator 、eventlog 、ftp publishing service 、lpdsvc、messenger 、net logon 、network dde 、network dde dsdm 、network monitoring agent 、nt lm security support provider
+ 、ole 、remote access connection manager 、remote access isnsap service 、remote access server 、remote procedure call (rpc) locator 、remote procedure call (rpc) service 、schedule 、server 、simple tcp/ip services 、snmp、spooler 、tcp/ip netbios helper 、ups 及 workstation。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Statistics</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：显示本地工作站或服务器服务的统计记录。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net statistics [workstation | server]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数 ：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net statistics 将列出其统计信息可用的运行服务。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+workstation</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+显示本地工作站服务的统计信息。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+server</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+显示本地服务器服务的统计信息。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Stop</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：停止 Windows NT 网络服务。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net stop service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数 ：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+service</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+包括下列服务：alerter（警报）、client service for netware（Netware客户端服务）、clipbook server（剪贴簿服务器）、computer browser（计算机浏览器）、directory replicator（目录复制器）、ftp publishing service (ftp )（ftp 发行服务）、lpdsvc、messenger（信使）、net logon（网络登录）、network dde（网络 dde）、network dde dsdm（网络 dde
+ dsdm）、network monitor agent（<a target="_blank" target="_blank" href="http://baike.baidu.com/view/62485.htm" style="color:rgb(19,110,194); text-decoration:none">网络监控</a>代理）、nt lm security support provider（NT LM 安全性支持提供）、ole（<a target="_blank" target="_blank" href="http://baike.baidu.com/view/3822103.htm" style="color:rgb(19,110,194); text-decoration:none">对象链接与嵌入</a>）、remote
+ access connection manager（<a target="_blank" target="_blank" href="http://baike.baidu.com/view/183974.htm" style="color:rgb(19,110,194); text-decoration:none">远程访问</a>连接管理器）、remote access isnsap service（远程访问 isnsap 服务）、remote access server（远程访问服务器）、remote
+ procedure call (rpc) locator（<a target="_blank" target="_blank" href="http://baike.baidu.com/view/431455.htm" style="color:rgb(19,110,194); text-decoration:none">远程过程调用</a>定位器）、remote procedure call (rpc) service（远程过程调用服务）、schedule（调度）、server（服务器）、simple tcp/ip
+ services（简单 TCP/IP 服务）、snmp、spooler（后台打印程序）、tcp/ip netbios helper（TCP/IP NETBIOS<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1266933.htm" style="color:rgb(19,110,194); text-decoration:none">辅助工具</a>）、ups 及 workstation（<a target="_blank" target="_blank" href="http://baike.baidu.com/view/7977.htm" style="color:rgb(19,110,194); text-decoration:none">工作站</a>）。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+下列服务仅在 Windows NT Server 中可用：file server for macintosh、gateway service for netware、microsoft dhcp server、print server for macintosh、remoteboot、windows internet name service。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Time</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：使计算机的时钟与另一台计算机或域的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/100292.htm" style="color:rgb(19,110,194); text-decoration:none">时间同步</a>。不带 /set 参数使用时，将显示另一台计算机或域的时间。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net time [\\computername | /domain[:name]] [/set]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+\\computername</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+要检查或同步的服务器名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/domain[:name]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定要与其<a target="_blank" target="_blank" href="http://baike.baidu.com/view/100292.htm" style="color:rgb(19,110,194); text-decoration:none">时间同步</a>的域。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/set</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+使本计算机时钟与指定计算机或域的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/198969.htm" style="color:rgb(19,110,194); text-decoration:none">时钟同步</a>。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net Use</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：连接计算机或断开计算机与共享资源的连接，或显示计算机的连接信息。该命令也控制永久网络连接。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：<a target="_blank" target="_blank" href="http://baike.baidu.com/view/834781.htm" style="color:rgb(19,110,194); text-decoration:none">net use</a>[devicename | *] [\computernamesharename[volume]] [password | *]] [/user</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+:[domainname]username] [[/delete] | [/persistent:{yes | no}]]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net usedevicename [/home[password | *]] [/delete:{yes | no}]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net use[/persistent:{yes | no}]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数 ：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的net use将列出网络连接。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+devicename</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定要连接到的资源名称或要断开的设备名称。有两类设备名：<a target="_blank" target="_blank" href="http://baike.baidu.com/view/325542.htm" style="color:rgb(19,110,194); text-decoration:none">磁盘驱动器</a>（D: 到 Z:）和打印机（LPT1: 到 LPT3）。若键入星号而不是指定设备名将分配下一个可用设备名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+\computernamesharename</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+服务器及共享资源的名称。如果计算机名包含空白字符，要用引号 (&quot; &quot;) 将双反斜线及计算机名引住。计算机名长度可以是 1-15 个字符。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+volume</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定服务器上的 NetWare 卷。要连接到 NetWare 服务器，必须安装并运行 NetWare 客户机服务 (Windows NT Workstation) 或 NetWare<a target="_blank" target="_blank" href="http://baike.baidu.com/view/807.htm" style="color:rgb(19,110,194); text-decoration:none">网关</a>服务 (Windows NT Server)。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+password</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+访问共享资源的密码。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+*</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+提示键入密码。在密码提示行中键入密码时，将不显示该密码。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/user</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定进行连接的另外一个用户。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+domainname</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定另一个域。例如<a target="_blank" target="_blank" href="http://baike.baidu.com/view/834781.htm" style="color:rgb(19,110,194); text-decoration:none">net use</a>d: \servershare /user:adminmariel 连接用户 mariel，如同从 admin 域连接一样。如果省略域，将使用当前登录域。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+username</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定登录的用户名。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/home</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将用户连接到其宿主目录。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+取消指定网络连接。如果用户以星号指定连接，则取消所有网络连接。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/persistent</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+控制永久网络连接的使用。默认为上次使用的设置。无设备的连接不是永久的。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+yes</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+保存建立的所有连接，并在下次登录时还原。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+no</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+不保存建立的连接和继发连接，并在下次登录时还原现有连接。使用 /delete 开关项取消永久连接。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net User</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：添加或更改用户帐号或显示用户帐号信息。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：<a target="_blank" target="_blank" href="http://baike.baidu.com/view/834781.htm" style="color:rgb(19,110,194); text-decoration:none">net use</a>r [username [password | *] [options]] [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net user username {password | *} /add [options] [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net user username [/delete] [/domain]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数 ：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的net user 将查看计算机上的用户帐号列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+username</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+添加、删除、更改或查看用户帐号名。用户帐号名最多可以有 20 个<a target="_blank" target="_blank" href="http://baike.baidu.com/view/263416.htm" style="color:rgb(19,110,194); text-decoration:none">字符</a>。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+password</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+为用户帐号分配或更改密码。密码必须满足在 net accounts 命令 /minpwlen 选项中设置的最小参数。最多是 14 个字符。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+*</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+提示输入密码。在密码提示行中键入密码时，将不显示该密码。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/domain</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+在计算机主域的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1058911.htm" style="color:rgb(19,110,194); text-decoration:none">主域控制器</a>中执行操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+该参数仅在 Windows NT Server 域成员的 Windows NT Workstation 计算机上可用。默认情况下，Windows NT Server 计算机在主域控制器中执行操作。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+注意：在计算机主域的主域控制器发生该动作。它可能不是登录域。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/add</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+将用户帐号添加到用户帐号数据库。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/delete</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+从用户帐号数据库中删除用户帐号。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+选项如下所示：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/active:{no | yes}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+启用或禁止用户帐号。如果不激活用户帐号，用户就不能访问计算机上的资源。默认&#20540;是 yes （激活）。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+例：<a target="_blank" target="_blank" href="http://baike.baidu.com/view/834781.htm" style="color:rgb(19,110,194); text-decoration:none">net use</a>r guest /active:yes 启用guest用户帐号</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net user guest /active:no 禁止guest用户帐号</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/comment:&quot;text&quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+提供用户帐号的注释。该注释最多可以有 48 个字符，文字用引号引住。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/countrycode:nnn</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+使用操作系统的国家代码以便为用户帮助和错误<a target="_blank" target="_blank" href="http://baike.baidu.com/view/1529143.htm" style="color:rgb(19,110,194); text-decoration:none">信息文件</a>提供指定语言文件。0 &#20540;表示默认国家代码。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/expires:{date | never}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+如果设置 date，将导致用户帐号过期，never 不对用户帐号设置时间限制。过期日期根据/countrycode &#20540;可以是下列&#26684;式：mm/dd/yy、dd/mm/yy 或 mmm,dd,yy。注意帐号在指定日期开始时过期。月份可以是数字、全名或三个字母的简拼。年可以是两位或四位数，使用逗号或斜线（不要用空&#26684;） 区分日期的各部分。如果省略 yy ，则使用该日期下一次到来的年份（根据计算机的时钟）。例如如果在 1994 年 1 月 10 日到 1995 年 1 月 8 日之间输入下列日期项，那它们相同：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+jan,91/9/95</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+january,9,19951/9</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/fullname:&quot;name&quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定用户全名而不是用户名。用引号将名字引住。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/homedir:path</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置用户宿主目录的路径。该路径必须存在。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/homedirreq:{yes | no}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置是否需要宿主目录。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/passwordchg:{yes | no}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定用户是否能改变自己的密码。默认&#20540;是 yes。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/passwordreq:{yes | no}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定用户帐号是否需要密码，默认&#20540;是 yes。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/profilepath:[path]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+设置用户登录配置文件的路径。该路径名指向注册表配置文件。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/scriptpath:path</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+为用户登录脚本设置路径。Path 不能是<a target="_blank" target="_blank" href="http://baike.baidu.com/view/25377.htm" style="color:rgb(19,110,194); text-decoration:none">绝对路径</a>；path 是相对于 %systemroot%SYSTEM32REPLIMPORTSCRIPTS 的<a target="_blank" target="_blank" href="http://baike.baidu.com/view/25307.htm" style="color:rgb(19,110,194); text-decoration:none">相对路径</a>：。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/times:{times | all}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定允许用户使用计算机的时间。times &#20540;表示为 day[-day][,day[-day]],time[-time][,time[-time]],增量限制为一小时。Days 可以是全名或简写（M、T、W、Th、F、Sa、Su）。Hours 可以是 12 小时制或 24 小时制。对于 12 小时&#20540;，使用 AM、PM 或 A.M、P.M。all 表示用户总可以登录。空&#20540;表示用户永远不能登录。用逗号分隔日期和时间，分隔时间和日期的单位用分号（例如 M,4AM-5PM; T,1PM-3PM）。指定 /times 时不要使用空&#26684;。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/usercomment:&quot;text &quot;</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+让管理员添加或更改帐号的“用户注释”。用引号引住文字。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/workstations:{computername[,…] | *}</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+列出最多八个用户可以登录到网络的工作站。用逗号分隔列表中的多个项。如果 /workstations 没有列表，或如果列表是星号“*”，则用户可以从任何一台计算机登录。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+Net View</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+功能：显示域列表、计算机列表或指定计算机的共享资源列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+&#26684;式：net view [\computername | /domain[:domainname]]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+net view /network:nw [\computername]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+参数：</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+无</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+键入不带参数的 net view 将显示当前域的计算机列表。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+\computername</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定要查看其共享资源的计算机。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/domain[:domainname]</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+指定要查看其可用计算机的域。如果省略 domainname ，则显示网络的所有域。</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+/network:nw</div>
+<div class="para" style="font-size:14px; word-wrap:break-word; color:rgb(51,51,51); margin-bottom:15px; text-indent:2em; line-height:24px; zoom:1; font-family:arial,宋体,sans-serif">
+显示 NetWare 网络中所有可用的服务器。如果指定计算机名，则显示 NetWare 网络中该计算机的可用资源。也可以用此开关指定添加到系统中的其他网络。</div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

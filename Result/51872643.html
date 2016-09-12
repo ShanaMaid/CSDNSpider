@@ -1,0 +1,127 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p style="margin-top:0px; margin-bottom:1.75em; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+利用JQuery中的animate函数轻松实现图片滚动，首先来看看animate的参数</p>
+<p style="margin-top:0px; margin-bottom:1.75em; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+$(selector).animate({params},speed,callback);</p>
+<p style="margin-top:0px; margin-bottom:1.75em; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+必需的 params 参数定义形成动画的 CSS 属性。<br style="">
+可选的 speed 参数规定效果的时长。它可以取以下&#20540;：”slow”、”fast” 或毫秒。<br style="">
+可选的 callback 参数是动画完成后所执行的函数名称。</p>
+<p style="margin-top:0px; margin-bottom:1.75em; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+<span id="more-156" style=""></span></p>
+<p style="margin-top:0px; margin-bottom:1.75em; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+原理同上一篇博客一样，只是在代码上进行优化，JS的代码缩减了几倍。<br style="">
+<img src="http://img.blog.csdn.net/20160427212421918?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="border:0px; height:auto; max-width:100%; vertical-align:middle"></p>
+<p style="margin-top:0px; margin-bottom:1.75em; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+代码如下：</p>
+<div class="wp_syntax" style="color:rgb(17,0,0); border:1px solid silver; margin:0px 0px 1.5em; overflow-y:hidden; overflow-x:auto; width:990px; font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(249,249,249)">
+<table style="border:none!important; border-collapse:collapse!important; border-spacing:0px; margin:0px!important; table-layout:fixed; width:988px; padding:0px!important">
+<tbody style="">
+<tr style="">
+<td class="code" style="width:988px; border:none!important; padding:0px!important; vertical-align:top!important; background-color:rgb(238,238,238)">
+<pre class="html" style="">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;&lt;/title&gt;
+	&lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.6.2.min.js&quot;&gt;&lt;/script&gt;
+&nbsp;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+	var i=0;
+&nbsp;
+	$(function () {
+&nbsp;
+	 	setInterval(&quot;roll()&quot;, 3000);
+	});
+	function roll () {
+		var img = $(&quot;ul li&quot;);
+		img.eq(i).animate({left:&quot;-1000px&quot;},1000,function () {
+			 $(this).css({left:&quot;1000px&quot;});
+		});
+		if (i==img.length-1) {i=0;}
+		img.eq(&#43;&#43;i).animate({left:&quot;0px&quot;},1000);
+&nbsp;
+	};
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+	div{
+		width: 1000px;
+		margin: 0 auto;
+		overflow: hidden;
+		height: 200px;
+	}
+	ul{
+		width: 2000px;
+		position: relative;
+		list-style: none;
+	}
+	ul li{
+		float: left;
+&nbsp;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	ul &gt;li&#43;li{
+&nbsp;
+		left: 1000px;
+	}
+	img{
+		width: 1000px;
+		height: 200px;
+	}
+&lt;/style&gt;
+&nbsp;
+&lt;body&gt;
+&lt;div&gt;
+&lt;ul&gt;
+	&lt;li  &gt;&lt;img  src=&quot;box_1.png&quot;&gt;&lt;/li&gt;
+	&lt;li  &gt;&lt;img  src=&quot;culture_1.png&quot;&gt;&lt;/li&gt;
+	&lt;li  &gt;&lt;img  src=&quot;groceries_1.png&quot;&gt;&lt;/li&gt;
+	&lt;li  &gt;&lt;img  src=&quot;index_0.png&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top:0px; margin-bottom:0px; color:rgb(229,229,229); font-family:Merriweather,Georgia,serif; font-size:16px; line-height:28px; background-color:rgb(25,25,25)">
+代码以及图片打包下载链接：<a target="_blank" href="http://shanamaid.top/wordpress/wp-content/uploads/2016/07/roll.rar" style="color:rgb(154,223,253); text-decoration:none; background-color:transparent">roll</a></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

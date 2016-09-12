@@ -1,0 +1,718 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<div style="margin:0px 0px 0px 15px; padding:20px 0px; border-width:1px 0px; border-top-style:solid; border-bottom-style:solid; border-top-color:rgb(170,170,170); border-bottom-color:rgb(170,170,170); width:710px; font-family:Verdana,Arial,宋体; background-color:rgb(249,249,249)">
+<h2 style="margin:0px; padding:0px; border:0px; font-family:微软雅黑; font-size:14px">
+PHP MySQL 简介</h2>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+MySQL 函数允许您访问 MySQL 数据库服务器。</p>
+</div>
+<div style="margin:0px 0px 0px 15px; padding:20px 0px; border-width:1px 0px; border-top-style:solid; border-bottom-style:solid; border-top-color:rgb(170,170,170); border-bottom-color:rgb(170,170,170); width:710px; font-family:Verdana,Arial,宋体; background-color:rgb(249,249,249)">
+<h2 style="margin:0px; padding:0px; border:0px; font-family:微软雅黑; font-size:14px">
+安装</h2>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+为了能够顺利的使用本类函数，必须在编译 PHP 时添加对 MySQL 的支持。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+编译时，只要使用 --with-mysql[=DIR] 配置选项即可，其中可选的 [DIR] 指向 MySQL 的安装目录。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+虽然本 MySQL 扩展库兼容 MySQL 4.1.0 及其以后版本，但是它不支持这些版本提供的额外功能。要使用这些功能，请使用 MySQLi 扩展库。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+如果要同时安装 mysql 扩展库和 mysqli 扩展库，必须使用同一个客户端库以避免任何冲突。</p>
+<h3 style="margin:20px 0px 0px; padding:0px; border:0px; font-size:12px">在 Linux 系统上安装</h3>
+<h4 style="margin:20px 0px 0px; padding:0px; border:0px">PHP 4</h4>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+默认开启了 --with-mysql 选项。此默认行为可以用 --without-mysql 配置选项来禁止。如果启用 MySQL 而不指定安装目录的话，PHP 将使用绑定的 MySQL 客户端连接库。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+还有其它应用程序使用 MySQL（例如 auth-mysql）的用户不要用绑定的库，而要指定 MySQL 的安装目录，如这样：--with-mysql=/path/to/mysql。这将强制 PHP 使用随 MySQL 安装的客户端连接库，就可以避免任何冲突。</p>
+<h4 style="margin:20px 0px 0px; padding:0px; border:0px">PHP 5&#43;</h4>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+MySQL 默认未启用，也没有绑定的 MySQL 库。使用 --with-mysql[=DIR] 配置选项来加入 MySQL 的支持。可以从&nbsp;<a target="_blank" target="_blank" href="http://www.mysql.com/" title="MySQL  The world's most popular open source database" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">MySQL</a>&nbsp;下载头文件和库。</p>
+<h3 style="margin:20px 0px 0px; padding:0px; border:0px; font-size:12px">在 Windows 系统上安装</h3>
+<h4 style="margin:20px 0px 0px; padding:0px; border:0px">PHP 4</h4>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+PHP MySQL 扩展已经编译入 PHP。</p>
+<h4 style="margin:20px 0px 0px; padding:0px; border:0px">PHP 5&#43;</h4>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+MySQL 默认未启用，因此必须在 php.ini 中激活 php_mysql.dll 动态连接库。此外，PHP 还需要访问 MySQL 客户端连接库。PHP 的 Windows 发行版包括了一个 libmysql.dll，为了让 PHP 能和 MySQL 对话，此文件必须放在 Windows 的系统路径 PATH 中。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+要激活任何 PHP 扩展库（例如 php_mysql.dll），PHP 指令 extension_dir 要被设为 PHP 扩展库所在的目录。PHP 5 下 extension_dir 取&#20540;的一个例子是 c:\php\ext。</p>
+<p class="note" style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+<span style="margin:0px; padding:0px; border:0px; font-weight:bold">注释：</span>如果启动 web 服务器时出现类&#20284;如下的错误：&quot;Unable to load dynamic library './php_mysql.dll'&quot;，这是因为系统找不到 php_mysql.dll 和 / 或 libmysql.dll。</p>
+</div>
+<div style="margin:0px 0px 0px 15px; padding:20px 0px; border-width:1px 0px; border-top-style:solid; border-bottom-style:solid; border-top-color:rgb(170,170,170); border-bottom-color:rgb(170,170,170); width:710px; font-family:Verdana,Arial,宋体; background-color:rgb(249,249,249)">
+<h2 style="margin:0px; padding:0px; border:0px; font-family:微软雅黑; font-size:14px">
+Runtime 配置</h2>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+MySQL 函数的行为受到 php.ini 中设置的影响。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+MySQL 配置选项：</p>
+<table class="dataintable  " style="margin:10px 0px 0px; padding:0px; border:1px solid rgb(170,170,170); border-collapse:collapse; width:709px">
+<tbody style="margin:0px; padding:0px; border:0px">
+<tr style="margin:0px; padding:0px; border:0px">
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+名称</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+默认</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+描述</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+可更改</th>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.allow_persistent</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&quot;1&quot;</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+是否允许 MySQL 的持久连接。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_SYSTEM</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.max_persistent</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&quot;-1&quot;</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+每个进程中最大的持久连接数目。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_SYSTEM</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.max_links</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&quot;-1&quot;</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+每个进程中最大的连接数，包括持久连接。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_SYSTEM</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.trace_mode</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&quot;0&quot;</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+跟踪模式。从 PHP 4.3.0 起可用。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.default_port</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+NULL</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+指定默认连接数据库的 TCP 端口号。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.default_socket</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+NULL</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+默认的 socket 名称。PHP 4.0.1起可用。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.default_host</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+NULL</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+默认的服务器地址。不适用于SQL安全模式。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.default_user</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+NULL</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+默认使用的用户名。不适用于SQL安全模式。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.default_password</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+NULL</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+默认使用的密码。不适用于SQL安全模式。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql.connect_timeout</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&quot;60&quot;</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+连接超时秒数。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+PHP_INI_ALL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="margin:0px 0px 0px 15px; padding:20px 0px; border-width:1px 0px; border-top-style:solid; border-bottom-style:solid; border-top-color:rgb(170,170,170); border-bottom-color:rgb(170,170,170); width:710px; font-family:Verdana,Arial,宋体; background-color:rgb(249,249,249)">
+<h2 style="margin:0px; padding:0px; border:0px; font-family:微软雅黑; font-size:14px">
+资源类型</h2>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+在 MySQL 模块中使用了两种资源类型。第一种是数据库的连接句柄，第二种是 SQL 查询返回的结果集。</p>
+</div>
+<div style="margin:0px 0px 0px 15px; padding:20px 0px; border-width:1px 0px; border-top-style:solid; border-bottom-style:solid; border-top-color:rgb(170,170,170); border-bottom-color:rgb(170,170,170); width:710px; font-family:Verdana,Arial,宋体; background-color:rgb(249,249,249)">
+<h2 style="margin:0px; padding:0px; border:0px; font-family:微软雅黑; font-size:14px">
+PHP MySQL 函数</h2>
+<p class="note" style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+<span style="margin:0px; padding:0px; border:0px; font-weight:bold">PHP：</span>指示支持该函数的最早的 PHP 版本。</p>
+<table class="dataintable  " style="margin:10px 0px 0px; padding:0px; border:1px solid rgb(170,170,170); border-collapse:collapse; width:709px">
+<tbody style="margin:0px; padding:0px; border:0px">
+<tr style="margin:0px; padding:0px; border:0px">
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+函数</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+描述</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+PHP</th>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_affected_rows.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_affected_rows()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得前一次 MySQL 操作所影响的记录行数。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_change_user()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+不赞成。改变活动连接中登录的用户</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_client_encoding.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_client_encoding()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回当前连接的字符集的名称</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_close.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_close()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+关闭非持久的 MySQL 连接。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_connect.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_connect()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+打开非持久的 MySQL 连接。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_create_db()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+不赞成。新建 MySQL 数据库。使用 mysql_query() 代替。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_data_seek.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_data_seek()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+移动记录指针。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_db_name.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_db_name()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从对 mysql_list_dbs() 的调用返回数据库名称。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_db_query()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+不赞成。发送一条 MySQL 查询。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+使用 mysql_select_db() 和 mysql_query() 代替。</p>
+</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_drop_db()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+不赞成。丢弃（删除）一个 MySQL 数据库。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+使用 mysql_query() 代替。</p>
+</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_errno.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_errno()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回上一个 MySQL 操作中的错误信息的数字编码。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_error.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_error()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回上一个 MySQL 操作产生的文本错误信息。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_escape_string()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+不赞成。转义一个字符串用于 mysql_query。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+使用 mysql_real_escape_string() 代替。</p>
+</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_fetch_array.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_fetch_array()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从结果集中取得一行作为关联数组，或数字数组，或二者兼有。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_fetch_assoc.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_fetch_assoc()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从结果集中取得一行作为关联数组。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_fetch_field.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_fetch_field()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从结果集中取得列信息并作为对象返回。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_fetch_lengths.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_fetch_lengths()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得结果集中每个字段的内容的长度。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_fetch_object.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_fetch_object()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从结果集中取得一行作为对象。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_fetch_row.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_fetch_row()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从结果集中取得一行作为数字数组。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_field_flags.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_field_flags()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+从结果中取得和指定字段关联的标志。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_field_len.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_field_len()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回指定字段的长度。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_field_name.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_field_name()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得结果中指定字段的字段名。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_field_seek.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_field_seek()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+将结果集中的指针设定为指定的字段偏移量。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_field_table.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_field_table()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得指定字段所在的表名。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_field_type.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_field_type()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得结果集中指定字段的类型。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_free_result.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_free_result()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+释放结果内存。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_get_client_info.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_get_client_info()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得 MySQL 客户端信息。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_get_host_info.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_get_host_info()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得 MySQL 主机信息。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_get_proto_info.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_get_proto_info()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得 MySQL 协议信息。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_get_server_info.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_get_server_info()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得 MySQL 服务器信息。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_info.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_info()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得最近一条查询的信息。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_insert_id.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_insert_id()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得上一步 INSERT 操作产生的 ID。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_list_dbs.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_list_dbs()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+列出 MySQL 服务器中所有的数据库。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_list_fields()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+不赞成。列出 MySQL 结果中的字段。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+使用 mysql_query() 代替。</p>
+</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_list_processes.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_list_processes()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+列出 MySQL 进程。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_list_tables()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+不赞成。列出 MySQL 数据库中的表。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+使用Use mysql_query() 代替。</p>
+</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_num_fields.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_num_fields()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得结果集中字段的数目。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_num_rows.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_num_rows()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得结果集中行的数目。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_pconnect.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_pconnect()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+打开一个到 MySQL 服务器的持久连接。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_ping.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_ping()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+Ping 一个服务器连接，如果没有连接则重新连接。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_query.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_query()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+发送一条 MySQL 查询。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_real_escape_string.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_real_escape_string()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+转义 SQL 语句中使用的字符串中的特殊字符。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_result.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_result()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得结果数据。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_select_db.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_select_db()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+选择 MySQL 数据库。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_stat.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_stat()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+取得当前系统状态。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+mysql_tablename()</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+不赞成。取得表名。使用 mysql_query() 代替。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_thread_id.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_thread_id()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回当前线程的 ID。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<a target="_blank" target="_blank" href="http://www.w3school.com.cn/php/func_mysql_unbuffered_query.asp" style="margin:0px; padding:0px; border:0px; color:rgb(144,11,9); background:transparent">mysql_unbuffered_query()</a></td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+向 MySQL 发送一条 SQL 查询（不获取 / 缓存结果）。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="margin:0px 0px 0px 15px; padding:20px 0px; border-width:1px 0px; border-top-style:solid; border-bottom-style:solid; border-top-color:rgb(170,170,170); border-bottom-color:rgb(170,170,170); width:710px; font-family:Verdana,Arial,宋体; background-color:rgb(249,249,249)">
+<h2 style="margin:0px; padding:0px; border:0px; font-family:微软雅黑; font-size:14px">
+PHP MySQL 常量</h2>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+在 PHP 4.3.0 以后的版本中，允许在 mysql_connect() 函数和 mysql_pconnect() 函数中指定更多的客户端标记：</p>
+<p class="note" style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+<span style="margin:0px; padding:0px; border:0px; font-weight:bold">PHP：</span>指示支持该常量的最早的 PHP 版本。</p>
+<table class="dataintable  " style="margin:10px 0px 0px; padding:0px; border:1px solid rgb(170,170,170); border-collapse:collapse; width:709px">
+<tbody style="margin:0px; padding:0px; border:0px">
+<tr style="margin:0px; padding:0px; border:0px">
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+常量</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+描述</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+PHP</th>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_CLIENT_COMPRESS</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+使用压缩的通讯协议。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4.3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_CLIENT_IGNORE_SPACE</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+允许在函数名后留空&#26684;位。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4.3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_CLIENT_INTERACTIVE</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+在关闭连接前所允许的交互超时非活动时间。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4.3</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_CLIENT_SSL</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+使用 SSL 加密（仅在 MySQL 客户端库版本为 4&#43; 时可用）。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+4.3</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+mysql_fetch_array() 函数使用一个常量来表示所返回数组的类型：</p>
+<table class="dataintable  " style="margin:10px 0px 0px; padding:0px; border:1px solid rgb(170,170,170); border-collapse:collapse; width:709px">
+<tbody style="margin:0px; padding:0px; border:0px">
+<tr style="margin:0px; padding:0px; border:0px">
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+常量</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+描述</th>
+<th style="margin:0px; padding:5px 15px 5px 6px; border:1px solid rgb(170,170,170); vertical-align:baseline; background-color:rgb(213,213,213)">
+PHP</th>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_ASSOC</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回的数据列使用字段名作为数组的索引名。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&nbsp;</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_BOTH</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+返回的数据列使用字段名及数字索引作为数组的索引名。</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&nbsp;</td>
+</tr>
+<tr style="margin:0px; padding:0px; border:0px">
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+MYSQL_NUM</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+返回的数据列使用数字索引作为数组的索引名。</p>
+<p style="margin-top:12px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; line-height:18px">
+索引从 0 开始，表示返回结果的第一个字段。</p>
+</td>
+<td style="margin:0px; padding:6px 15px 6px 6px; border:1px solid rgb(170,170,170); vertical-align:text-top; background-color:rgb(239,239,239)">
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

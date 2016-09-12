@@ -1,0 +1,141 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p></p>
+<p>Time:2016-7-10</p>
+<p>Author:ShanaMaid</p>
+<p>Blog:</p>
+<p>http://shanamaid.top/wordpress</p>
+<p>http://blog.csdn.net/shanamaid</p>
+<p><span style="color:rgb(192,0,0)">转载请保留以上信息</span></p>
+<p><span style="color:rgb(192,0,0)"><br>
+</span></p>
+<p><span style="color:rgb(192,0,0)"><br>
+</span></p>
+<p></p>
+<p>1、什么是<span style="font-family:Calibri">Git?(</span><span style="font-family:宋体">取自度娘</span><span style="font-family:Calibri">)</span></p>
+<p>&nbsp;&nbsp;&nbsp;Git<span style="font-family:宋体">是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</span></p>
+<p>Git<span style="font-family:宋体">是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理</span><span style="font-family:Calibri">. Git</span><span style="font-family:宋体">是</span><span style="font-family:Calibri">Linus Torvalds</span><span style="font-family:宋体">为了帮助管理
+</span><span style="font-family:Calibri">Linux</span><span style="font-family:宋体">内核开发而开发的一个开放源码的版本控制软件。</span></p>
+<p>&nbsp;</p>
+<p>2<span style="font-family:宋体">、需要掌握的基本指令</span></p>
+<p>&nbsp;&nbsp;&nbsp;git remote add &nbsp;origin &nbsp;&nbsp;//<span style="font-family:宋体">添加远程仓库</span></p>
+<p>&nbsp;&nbsp;&nbsp;git init //<span style="font-family:宋体">初始化本地文件夹</span></p>
+<p>&nbsp;&nbsp;&nbsp;git add &nbsp;//<span style="font-family:宋体">添加变更内容</span></p>
+<p>&nbsp;&nbsp;&nbsp;git commit &nbsp;//<span style="font-family:宋体">为变更内容添加注释</span></p>
+<p>&nbsp;&nbsp;&nbsp;git pull //<span style="font-family:宋体">从远程仓库拉取文件更新</span></p>
+<p>&nbsp;&nbsp;&nbsp;git push //<span style="font-family:宋体">从本地仓库推送变动文件至远程仓库</span></p>
+<p>&nbsp;</p>
+<p>3<span style="font-family:宋体">、安装</span><span style="font-family:Calibri">git</span></p>
+<p>http://dlsw.baidu.com/sw-search-sp/soft/4e/30195/Git-2.7.2-32-bit_setup.1457942412.exe</p>
+<p>下载好后的文件一路<span style="font-family:Calibri">next</span><span style="font-family:宋体">就可以了，当点完</span><span style="font-family:Calibri">finish</span><span style="font-family:宋体">后</span><span style="font-family:Calibri">git</span><span style="font-family:宋体">安装完成</span></p>
+<p>&nbsp;</p>
+<p>4<span style="font-family:宋体">、本地仓库的初始化</span></p>
+<p>首先新建一个文件夹，文件夹名字随意，可以与远程仓库名字不一样。</p>
+<p>eg:yl_project</p>
+<p>进入<span style="font-family:Calibri">yl_project</span><span style="font-family:宋体">文件夹，在这个空文件夹目录下右键，选择</span><span style="font-family:Calibri">Git Bash Here</span><span style="font-family:宋体">。</span></p>
+<p>有的人可能安装了<span style="font-family:Calibri">Git</span><span style="font-family:宋体">后可能直接右键没有这个选项，可以</span><span style="font-family:Calibri">shift&#43;</span><span style="font-family:宋体">右键 试试看。</span></p>
+<p>选择<span style="font-family:Calibri">Git Bash Here</span><span style="font-family:宋体">后会弹出类&#20284;</span><span style="font-family:Calibri">cmd</span><span style="font-family:宋体">的窗口，这就是</span><span style="font-family:Calibri">Git</span><span style="font-family:宋体">。</span></p>
+<p><span style="font-family:宋体"><img src="http://img.blog.csdn.net/20160710182722970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p>细心的人会发现还有一个<span style="font-family:Calibri">Git GUI Here</span><span style="font-family:宋体">，这个是图形化界面，不推荐使用。</span></p>
+<p>&nbsp;</p>
+<p>继续回到正题，在弹出的<span style="font-family:Calibri">Git</span><span style="font-family:宋体">窗口输入</span><span style="font-family:Calibri">git init,</span><span style="font-family:宋体">初始化本地仓库</span></p>
+<p>初始化完成后会有</p>
+<p>Initialized empty Git repository in C:/Users/Administrator/Desktop/yl_project/.git/</p>
+<p>in<span style="font-family:宋体">后面的是路径名，因人而异。</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;<img src="http://img.blog.csdn.net/20160710182739252?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>&nbsp;</p>
+<p>然后添加远程仓库,<span style="font-family:宋体">这里需要远程仓库的链接，这里以</span><span style="font-family:Calibri">coding</span><span style="font-family:宋体">为例。</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;<img src="http://img.blog.csdn.net/20160710182758048?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>选择项目后点击代码，就会出现HTTP SSH<span style="font-family:宋体">方式访问仓库，复制这个链接</span></p>
+<p>在<span style="font-family:Calibri">git </span><span style="font-family:宋体">窗口输入</span></p>
+<p>git remote add origin &nbsp;<a target="_blank" target="_blank" href="https://git.coding.net/Footer-Fuel/xxly.git"><u><span style="color:rgb(0,0,255)">链接</span></u></a></p>
+<p>&nbsp;<img src="http://img.blog.csdn.net/20160710182909939?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>可以看见输入指令后没任何提示，这也是<span style="font-family:Calibri">git</span><span style="font-family:宋体">的风&#26684;之一——“没有消息就是最好的消</span> 息”。</p>
+<p>此时远程仓库已经添加成功</p>
+<p>接着输入<span style="font-family:Calibri">git pull origin master</span><span style="font-family:宋体">拉去远程仓库的文件，由于我自己本地配置记录了账号密</span> 码就不用输入了。第一次使用的会依次弹出两个<span style="font-family:Calibri">2</span><span style="font-family:宋体">个窗口，第一个输入账号，第二个输</span> 入密码。出现下图的情况表示成功拉去文件</p>
+<p>&nbsp;<img src="http://img.blog.csdn.net/20160710182934017?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>&nbsp;</p>
+<p>发现文件夹多了一个这个文件，OK<span style="font-family:宋体">，成功拉取</span></p>
+<p>&nbsp;<img src="http://img.blog.csdn.net/20160710183029283?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>&nbsp;</p>
+<p>5、关于<span style="font-family:Calibri">git add ,git commit,git push</span></p>
+<p>git add<span style="font-family:宋体">和</span><span style="font-family:Calibri">git commit</span><span style="font-family:宋体">是一对好兄弟，必定成对出现，</span></p>
+<p>也就是说你使用了<span style="font-family:Calibri">git add</span><span style="font-family:宋体">后必须使用</span><span style="font-family:Calibri">git commit</span><span style="font-family:宋体">。</span></p>
+<p>&nbsp;</p>
+<p>git add<span style="font-family:宋体">用于提交变更的文件，</span><span style="font-family:Calibri">git commit</span><span style="font-family:宋体">则是用于标注本次提交的变动，可以理解</span> 为注释</p>
+<p>一般用 <span style="font-family:Calibri">git add -A &nbsp;&nbsp;&nbsp;&nbsp;A=all</span><span style="font-family:宋体">，即提交本次全部变动</span></p>
+<p>Git &nbsp;commit -m “<span style="color:rgb(255,0,0)">XXXXXX</span>”&nbsp;&nbsp;&nbsp;m=message &nbsp;<span style="font-family:宋体">红色的</span><span style="font-family:Calibri">XXX</span><span style="font-family:宋体">就是注释，即变动信息</span></p>
+<p>&nbsp;</p>
+<p>Git add<span style="font-family:宋体">后记得</span><span style="font-family:Calibri">commit</span></p>
+<p>Eg:</p>
+<p>Git add -A</p>
+<p>Git commit -m “测试”</p>
+<p>Git push origin master &nbsp;&nbsp;//<span style="font-family:宋体">会弹出窗口叫你输入账户密码</span></p>
+<p>&nbsp;<img src="http://img.blog.csdn.net/20160710183002958?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>6、关于文件冲突</p>
+<p>比如一个<span style="font-family:Calibri">test.txt</span><span style="font-family:宋体">文件里的内容是</span></p>
+<p>I am good!</p>
+<p>&nbsp;</p>
+<p>A<span style="font-family:宋体">把</span><span style="font-family:Calibri">good</span><span style="font-family:宋体">修改成了</span><span style="font-family:Calibri">bad,</span><span style="font-family:宋体">推到了服务器上，</span></p>
+<p>而<span style="font-family:Calibri">B</span><span style="font-family:宋体">在本地把</span><span style="font-family:Calibri">good</span><span style="font-family:宋体">修改成了</span><span style="font-family:Calibri">better,</span><span style="font-family:宋体">同时已经</span><span style="font-family:Calibri">Git
+ add</span><span style="font-family:宋体">和</span><span style="font-family:Calibri">git commit</span><span style="font-family:宋体">了，此时</span><span style="font-family:Calibri">B</span><span style="font-family:宋体">从服务器上拉取。那么</span><span style="font-family:Calibri">test.txt</span><span style="font-family:宋体">就会产生冲突了，在冲突的地方会出现</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<p>I am bad!</p>
+<p>=======</p>
+<p>I am better!</p>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>根据需要修改这段字符就可以了，比如最终决定保留的是 <span style="font-family:Calibri">I am better!</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="color:rgb(255,0,0)">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span></p>
+<p><span style="color:rgb(255,0,0)">I am bad!</span></p>
+<p><span style="color:rgb(255,0,0)">=======</span></p>
+<p>I am better!</p>
+<p><span style="color:rgb(255,0,0)">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</span></p>
+<p>&nbsp;</p>
+<p>删除红色部分，然后<span style="font-family:Calibri">git add &nbsp;&nbsp;git commit</span><span style="font-family:宋体">即可，一般</span><span style="font-family:Calibri">commit</span><span style="font-family:宋体">需要备注解决冲突。</span></p>
+<p>&nbsp;</p>
+<p>OK<span style="font-family:宋体">，差不多都讲完了。有问题的地方请指正。</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

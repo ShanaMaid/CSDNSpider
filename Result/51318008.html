@@ -1,0 +1,161 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:24px">本次实验需要2台电脑主机连在同一路由器上面</span></p>
+<p><span style="font-size:24px">当然如果没有2台电脑主机和路由器的也不用着急，我们可以用虚拟机替代</span></p>
+<p><span style="font-size:24px">各位先去装一个VMware12版，然后装一个WIN7的虚拟机</span></p>
+<p><span style="font-size:24px"></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; font-size:14px; line-height:26px; word-wrap:break-word; color:rgb(68,68,68); font-family:tahoma,'Hiragino Sans GB','Wenquanyi Micro Hei',微软雅黑,Arial,Verdana,sans-serif">
+<span style="word-wrap:break-word; color:rgb(51,56,61)"><span style="word-wrap:break-word; font-weight:700">VMware 12 专业版永久许可证密钥</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; font-size:14px; line-height:26px; word-wrap:break-word; color:rgb(68,68,68); font-family:tahoma,'Hiragino Sans GB','Wenquanyi Micro Hei',微软雅黑,Arial,Verdana,sans-serif">
+<span style="word-wrap:break-word; color:rgb(51,56,61)">&nbsp; &nbsp; &nbsp; &nbsp; 5A02H-AU243-TZJ49-GTC7K-3C61N</span></p>
+WIN7纯净版镜像
+<p><span style="font-size:24px">右键复制到迅雷的新建连接中即可</span></p>
+<p><span style="font-size:24px">ed2k://|file|cn_windows_7_professional_with_sp1_x86_dvd_u_677162.iso|2653276160|08F65018BD9B5BC8D77C1C7C5615A329|/<br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">装好虚拟机以后一切准备就绪。OK，下面对2台主机进行编号</span></p>
+<p><span style="font-size:24px">进攻的主机为Hacker</span></p>
+<p><span style="font-size:24px">被仅供的主机取名为<span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">Broiler（肉鸡）</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">在看正式教程之前大家可以去看看这两篇基础的我转载的博客，不用全部看完，大概浏览一下知道有哪些指令就可以了，以后需要的时候再查找，连接如下：</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><a target="_blank" target="_blank" href="http://blog.csdn.net/shanamaid/article/details/51265286" style="color:rgb(0,0,0); text-decoration:none; font-family:'Microsoft YaHei'; font-size:20px; line-height:30px">Dos常用基础命令</a>：http://blog.csdn.net/shanamaid/article/details/51265286<br>
+</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><a target="_blank" target="_blank" href="http://blog.csdn.net/shanamaid/article/details/51265272" style="color:rgb(0,0,0); text-decoration:none; font-family:'Microsoft YaHei'; font-size:20px; line-height:30px">NET指令</a>：http://blog.csdn.net/shanamaid/article/details/51265272<br>
+</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><br>
+</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">由于没有2台主机，我是用虚拟机和主机做的实验。</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">用2台主机的各位依葫芦画瓢就可以了。</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">我是用虚拟机作为Hacker,主机作为<span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">Broiler。</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">各位用2台主机的自行确定身份即可，用虚拟机的各位最好按照我的步骤来，弄熟了以后交换身份也没问题，OK教程正式开始。</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">首先把Broiler主机的所有防火墙软件比如360、QQ安全管家、卡巴斯基等关掉，当然别忘记了Windows自带的防火墙。</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">如何关闭自带的防火墙呢？</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">打开Broiler主机的cmd，输入services.msc</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">打开服务</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><img src="http://img.blog.csdn.net/20160504205426086?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">找到Windows FireWall</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">右键属性，点击停止，启动类型设置为禁止启动</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px"><br>
+</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">1、<span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">Broiler</span>打开cmd，输入ipconfig查询ip地址</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px"><img src="http://img.blog.csdn.net/20160504201200225?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">得到Broiler的ip地址为210.41.103.172</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px"><br>
+</span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">2、<span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px">Broiler中右键
+ 计算机-&gt;管理-&gt;共享文件夹-&gt;共享</span></span></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; font-size:24px; line-height:26px"><img src="http://img.blog.csdn.net/20160504201841617?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">在右边空白区域右键，新建共享-&gt;下一步-&gt;选择C盘根目录-&gt;下一步-&gt;共享名设为c$-&gt;下一步-&gt;自定义权限-&gt;自定义-&gt;弹出框中勾选完全控制-&gt;确定-&gt;下一步-&gt;完成</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">不懂的可以跟着动态图做。</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">3、在Hacker主机中打开cmd</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">输入ping ip地址，eg:ping 210.41.103.172 &nbsp;测试一下网络连接是否通畅</span></span><img src="http://img.blog.csdn.net/20160504202511982?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">如果出现类&#20284;图中样式，OK，网络连接通畅，可以接着进行下一步了。</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">如果出现下图这种情况，丢包率达到100%，那么就是有问题了，要考虑一下网络连接情况了。（注：为了演示连接失败的情况，图中的IP地址为虚假，别在意）</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><img src="http://img.blog.csdn.net/20160504202718514?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">4、Hacker主机利用net use 与Broiler主机建立连接</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px">net use \\IP\ipc$ &quot;密码&quot; /user:&quot;用户名&quot; &nbsp; &nbsp; &nbsp;( 有3个空&#26684;)<img src="http://img.blog.csdn.net/20160504203517842?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span><br>
+</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">当出现&quot;命令成功完成&quot;后，此时你已经成功与Broiler主机建立了IPC$连接。</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px"><br>
+</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">5、将Broiler主机上的C盘映射到Hacker主机上</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">net use Z: \\ip\c$</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">eg:net use Z: \\210.41.103.172\c$ &nbsp; &nbsp;</span></span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">注：Z为映射的设备名，只要不与磁盘冲突GHIJKLMN........都可以</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px"><span style="white-space:pre"></span>c$是映射到Broiler主机上的共享名，前面我们设计了C$共享名对应的是C盘根目录</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">如果出现下图情况就成功了</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px"><img src="http://img.blog.csdn.net/20160504204857069?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">部分人可能会出现错误，参考以下错误原因：</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px"></span></span></p>
+<p>错误号5，拒绝访问：很可能你使用的用户不是管理员权限的；&nbsp;</p>
+<p>错误号51，Windows无法找到网络路径：网络有问题；&nbsp;</p>
+<p>错误号53，找不到网络路径：ip地址错误；目标未开机；目标lanmanserver服务未启动；目标有防火墙（端口过滤）；&nbsp;</p>
+<p>错误号67，找不到网络名：你的lanmanworkstation服务未启动或者目标删除了ipc$；&nbsp;</p>
+<p>错误号1219，提供的凭据与已存在的凭据集冲突：你已经和对方建立了一个ipc$，请删除再连；&nbsp;</p>
+<p>错误号1326，未知的用户名或错误密码：原因很明显了；&nbsp;</p>
+<p>错误号1792，试图登录，但是网络登录服务没有启动：目标NetLogon服务未启动；</p>
+<p>错误号2242，此用户的密码已经过期：目标有帐号策略，强制定期要求更改密码。</p>
+<p><br>
+</p>
+6、打开计算机你会看到多了一个磁盘，在网络位置下<img src="http://img.blog.csdn.net/20160504205733041?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">\\后面就是Broiler主机的IP地址</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">7、双击这个磁盘即可进入，当我们往这个磁盘里放东西的时候，放入的东西会传送到Broiler主机的C盘里面。但是我们直接在这个磁盘上面双击文件运行的时候是在我们的电脑上运行，那么我们如何让指定的程序在指定的时间在Broiler主机上面运行呢？</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">8、利用at控制任务运行</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:rgb(51,51,51)"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">然后我们要查询用net time查询一下Broiler主机的时间，因为主机的时间可能和我们不一样，所以我们指定任务的执行的时间必须按照Broiler主机的时间来</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:rgb(51,51,51)"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px"><br>
+</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:rgb(51,51,51)"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">net time \\ip</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:rgb(51,51,51)"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px">eg : &nbsp;net time \\210.41.103.172</span></span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:rgb(51,51,51)"><span style="line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px"><img src="http://img.blog.csdn.net/20160504220632527?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">接下来就是用at指定任务的执行时间</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">at \\ip time dos指令</span></span></p>
+<p><span style="font-family:Arial; font-size:24px; color:#362e2b"><span style="line-height:26px">eg:at \\210.41.103.172 shutdown -s -t 600</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">OK，添加成功</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><img src="http://img.blog.csdn.net/20160504221806245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">到时间后</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><img src="http://img.blog.csdn.net/20160504221623774?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px"><br>
+</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">在Broiler主机的cmd输入shutdown -a即可取消自动关机</span></span></p>
+<p><span style="font-size:24px"><span style="color:rgb(51,51,51); font-family:arial,宋体,sans-serif; line-height:26px">也可以在Z盘里面放exe或者bat，设置定时执行</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">如果到时间没有执行有可能是断开了</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px">用net use重新连接一遍即可</span></span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><br>
+</span></span></p>
+<p><span style="font-size:24px">其实可以可以不用创建C$的C：\共享</span></p>
+<p><span style="font-size:24px">直接用net use \\ip\ipc$ &quot;密码&quot; /user:&quot;用户名&quot;连接上就可以进行操作了</span></p>
+<p><span style="font-size:24px">把后续的操作的C$改成ipc$即可</span></p>
+<p><span style="font-size:24px">创建共享C$的目的只是为了上各位了解一下如何创建共享</span></p>
+<p><span style="font-family:arial,宋体,sans-serif; font-size:24px; color:#333333"><span style="line-height:26px"><br>
+</span></span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

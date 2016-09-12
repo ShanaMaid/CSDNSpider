@@ -1,0 +1,75 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+由于近日做的程序中涉及到的循环比较多且处理的情况较复杂，所以在运行程序时出现执行超时提示如下：<br>
+Fatal error: Maximum execution time of 30 seconds exceeded in D:\php\AppServ\www\sum3\test.php on line 3</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+通过在网上搜索，找到以下解决方案给大家分享一下：</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+这个错误是说你的php<br>
+执行时间越过了配置文件中设置的最大执行时间30秒钟，这不是你的程序本身存在的问题，而&nbsp;<br>
+是系统的配置文件问题，如果你的网速快的话，可能再执行一次就不会出现这种错误了，不过</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+有了出现这种问题也可以进行一定的修改，方法有三种：<br>
+1.修改php的配置文件，找到php.ini文件，它一般应该放在你的C:\WINDOWS目录下，然后找到<br>
+max_execution_time = 30 ;//设置成你想要的&#20540;，单位是秒</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+<br>
+这一行，这就是设置的执行时间最大&#20540;为30秒，你可以对这个&#20540;进行一下修正，改为你的期望&#20540;。（也可以直接设置成：max_execution_time = 0）</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+<br>
+2.使用ini_set()函数，不是所有人都能修改php.ini文件的，那么你可以使用这个函数来改变你的最大执行时间限制&#20540;，如：<br>
+ini_set('max_execution_time', '100')；<br>
+则设置为100秒，你也可以设置为0，那么就是不限制执行的时间。<br>
+3.使用set_time_limit()函数,set_time_limit(20)则表示最大执行时间加上20秒，但如果在php执行安全模式时，set_time_limit()将不会有结果，除非你用了第一种方法。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+<br>
+以下是部分讲解：set_time_limit --- 限制最大的执行时间set_time_limit(PH3 , PHP4)set_time_limit --- 限制最大的执行时间语法 : void set_time_limit (int seconds)说明 : 设定一个程式所允许执行的秒数，如果到达限制的时间，程式将会传回错误。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+它预设的限制时间是30秒，max_execution_time的&#20540;定义在结构档案中(在PHP3中叫做php3.ini，在PHP4则叫做php.ini)，如果将秒数设为0，表示无时间上的限制。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+当呼叫此函式时，set_time_limit( )会从零重新开始计算最长执行的时间，也就是说，如果最长执行时间为预设的30秒，而在呼叫此函式set_time_limit(20)之前已花了25秒来执行程式，则程式最长执行的时间将会是45秒。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+注意 : 当PHP是执行在安全模式时，set_time_limit( )将不会有结果，除非是关闭安全模式或是修改结构档案中(在PHP3中叫做php3.ini，在PHP4则叫做php.ini)的时间限制。</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+<br>
+</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+<br>
+</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:0px; border:0px; font-size:14px; line-height:28px; font-family:Verdana,lucida,'lucida-sans unicode',sans-serif; text-indent:2em">
+原文地址：http://www.alixixi.com/program/a/2011110575885.shtml</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

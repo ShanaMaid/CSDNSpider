@@ -1,0 +1,79 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:24px">（一）什么是IPC$入侵？</span></p>
+<p><span style="font-size:24px">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="font-size:18px">IPC$入侵，即通过使用Windows 系统中默认启动的IPC$共享，来达到侵略主机，获得计算机控制权的入侵。此类入侵主要利用的是计算机使用者对计算机安全的知识缺乏，通常不会给计算机设置密码或者密码过于简单，因此才导致被黑客的有机可乘。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:24px">（二）如何查看IPC$共享？</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>第一步：右键 计算机-&gt;管理</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"><img src="" alt=""></span></span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"><span style="white-space:pre"></span>第二</span>步：共享文件夹-&gt;共享-&gt;右侧 即可查看共享的文件夹</span></p>
+<p><span style="font-size:18px"><img src="http://img.blog.csdn.net/20160501010218200?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><img src="" alt=""><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">（三）如何创建IPC$漏洞？</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"></span>第一步：win&#43;r &nbsp; 输入gpedit.msc，点击确定，打开本地组策略编辑器</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160501010126309?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><img src="" alt=""></span></span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><span style="white-space:pre"></span>第二步</span>：计算机配置-&gt;windows配置-&gt;本地策略-&gt;安全选项</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><img src="" alt=""></span></span></p>
+<p><span style="font-size:24px"><span style="white-space:pre">第三</span>步：双击安全选项</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160501010059028?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><img src="" alt=""></span></span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><span style="white-space:pre"></span>第四</span>步：右键 网络访问：本地账户的共享和安全模型 &nbsp; 选择属性，将其设置为经典模式</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160501010022463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><img src="" alt=""></span></span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><span style="white-space:pre"><img src="" alt=""></span></span></span></p>
+<p><span style="font-size:24px"><span style="white-space:pre">第五步</span>：同理将账户：使用空白密码的本地账户只允许进行控制台登录设置为 禁用。</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><img src="" alt=""><img src="http://img.blog.csdn.net/20160501005945306?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"><img src="" alt=""><br>
+</span>&nbsp;&nbsp;</span></p>
+<p><span style="color:rgb(54,46,43); font-family:Arial; line-height:26px"><span style="font-size:24px"><span style="white-space:pre"></span>这样就建立了IPC漏洞。</span></span><br>
+</p>
+<p><span style="font-size:24px">（四）IPC$连接可以做些什么？</span></p>
+<p><span style="font-size:24px"><span style="white-space:pre"></span>我们可以通过IPC$建立连接，然后将木马或者病毒发送到目标的主机上，通过dos命令运行木马病毒，将目标变为肉鸡。</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">&nbsp; &nbsp;注：实际上生活中我们很少有机会在实际生活中亲自接触到目标的主机，并对其建立IPC$漏洞，实际上文中所说的方法更多是用于初学者的理解。真正的hacker攻防中采取的是另外的手段进行主机的攻克</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.12-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

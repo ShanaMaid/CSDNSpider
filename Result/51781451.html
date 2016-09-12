@@ -1,0 +1,100 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+网页中如何设置在网页地址栏中的小图标:</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+下面我们就讲讲：</p>
+<p style="margin:10px auto; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+　　&lt;link rel=&quot;SHORTCUT ICON&quot; href=&quot;http://****/*****.ico&quot;&gt;</p>
+<p style="margin:10px auto; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+　　&lt;link rel=&quot;BOOKMARK&quot; href=&quot;http://*****/*****.ico&quot;&gt;</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+这两个代码的作用。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+在浏览器地址栏有csdn有一个&quot;圆圈&quot;图标 如何在自己的jsp网页之中设置?</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+通常做法是:</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+要预先制作一个图标文件，大小为16*16像素。文件扩展名为ico，然后上传到相应目录中。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+在源文件“&lt;head&gt;&lt;/head&gt;”之间添加如下代码：</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+&lt;Link Rel=\&quot;ICON NAME\&quot; href=\&quot;http://图片的地址（注意与刚才的目录对应）\&quot;&gt;</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+收藏夹：</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+favicon.ico</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+你随便用一种画象素的工具，画一个图标，然后起成这个名字，上传到你所有网页文件的那个文件夹里就行了。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+一般都会自动找这个favicon.ico的文件，只要有，就会显示。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+并且是根目录下</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+地址栏的方法：</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+只是在网页中多加入下面一条代码就行了。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+&lt;link rel=”shortcut icon” href=”sample.png” type=”image/x-icon” /&gt;</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+如果手头没有合适的工具制作图片，也可以选择一个自己喜欢的图片，然后到这个网站去自动生成一个。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+Favicon，即Favorites Icon的缩写，顾名思义，便是其可以让浏览器的收藏夹中除显示相应的标题外，还以图标的方式区别不同的网站。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+您是不是也希望为您的网站加上一个体现您的主页的风&#26684;和个性的图标呢？其实要实现这一目的非常简单。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+第一步，准备一个图标制作软件。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+首先您必须了解所谓的图标（Icon）是一种特殊的图形文件&#26684;式，它是以 .ico 作为扩展名。普通的图像设计软件无法使用这种&#26684;式，所以您需要到一个软件下载站点去下载一个图标制作软件。您也可以访问http: //www.favicon.com/，这里提供一个免费的在线“收藏夹”图标生成器，如果您 E 文够好的话，在这里您还可以了解到更多的关于“收藏夹”图标的知识。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+第二步，确定“收藏夹”图标的规&#26684;。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+“收藏夹”图标有着它特有的规&#26684;：图标的大小为 16 * 16（以像素为单位）；所使用的颜色不得超过 16 色。 (为了清晰)</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+第三步，设计一个属于您自己的图标。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+您可以将您的网站的 LOGO 做成一个缩图或者另外设计一个别具特色的图案来作为“收藏夹”图标。总之，它一定要是属于您自己的，并且能很好的代表您的网站的风&#26684;和个性。然后将这个图标文件命名为：favicon.ico。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+最后，将这个图标文件（favicon.ico）上传到您的网站所在的服务器的根目录下。</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+<br>
+</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+<br>
+</p>
+<p style="margin:10px auto; text-indent:2em; color:rgb(94,94,94); font-family:Verdana,Helvetica,Arial; font-size:13px; line-height:19.5px; text-align:justify">
+原帖地址：http://www.cnblogs.com/px7034/archive/2010/08/26/1809367.html</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

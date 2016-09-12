@@ -1,0 +1,104 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:18px">前前后后接触网页开发已经有一年，大大小小也参加过2次竞赛，也有3次项目经历了。</span></p>
+<p><span style="font-size:18px">前几天跟学弟聊天的时候发现，很多初学者拿到项目后没有进行详细规划，直接分工就开始做，并且在项目的很多注意事项上存在着很多问题。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>问题1：</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>学弟a抱怨：“我的电脑硬盘坏了，之前做的项目的代码没了。”</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>当他说完这句话我就知道了，他们项目小组肯定没有进行代码托管。代码托管是什么？简而言子就是你把你的代码托管的远程服务器上，这样即使你更换了电脑，在搭配好你的工作环境后，只需要把你的代码从远程服务器上拉下来后就可以继续进行开发。你可以把代码托管大致理解为云盘，这里推荐coding和github。coding是免费的私有代码托管，即你的代码托管上去后你可以选择是公开还是私有，这些事免费提供的服务。而github的代码托管上去如果没付费&#20284;乎是公开的。目前我用的是coding。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>问题2：</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>学弟b抱怨：“在进行一个项目的调试时候，我调试了很多次才发现我最初的写法是正确的，于是又要一行一行代码的改回去，十分麻烦。导致后来我改代码的时候，我都会把整个项目文件夹复制一份作为备份，要还原的时候一个一个粘贴覆盖。”</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>其实这个问题提现的就是版本控制的问题，我们可以把最开始的那个版本理解为alpha版本，后面的各种调试都是后续测试，如果我们使用了版本控制，当我们需要回退到alpha版本的时候只需要一个指令就可以了，版本控制工具会帮我们把所有文件都回退到alpha版本时候的状态。这里推荐的版本控制工具为git，我写了一篇git的基础使用教程，这里主要讲的是些基础指令，连接：http://blog.csdn.net/shanamaid/article/details/51872655
+ &nbsp; &nbsp;想要深入了解的可以百度一下git廖雪峰。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">问题3：</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>我：“前端时间申请的项目做的如何了？”</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>学弟c：“项目的安排我们是每个人负责做一部分，最后用链接串在一起。”</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>我：“前端网页规范统一了吗？后台开始做了吗？数据库设计了吗？接口文档写好了吗？……”</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>学弟c：“都还没有，我们打算前台做完以后再做后台。”</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>这个问题提现的是没有认识到项目是一个团队性的工作，所有人都跑去做前端，前端做完了又所有人跑去做后台。这其实是一个很糟糕的安排，因为都知道后台数据库和接口文档都弄好了以后，根据需求变化是会进行更改的。</span></p>
+<p><span style="font-size:18px">前后端应该是并行的，这样人员才能得到最大化的利用和安排。打个比喻，做了前端再做后端相当于单线程，前后端一起做则是双线程。同时做前端的时候的组员之间缺乏沟通会导致最后的页面的风&#26684;迥异，比如字体你用的宋体，我用的黑体，你导航栏字体是20px，我是21px等等之类的。如果用了jQuery，版本是否一致，你是1.5，我是1.6之类的。这些都是一些细节问题，但是也是提现一个团队的协作性关键的地方。再比如说网页是否考虑想响应式布局，每套布局方案对应的屏幕宽度范围是多少，他设置的是0-800px是一套，你设置的又是0-900px是一套，这就是很严重的问题了。</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>同时还存在一个不同浏览器对标签的默认属性是不一样的，这里就需要初始化css的样式表了，这在我转载的另一篇博客里面有提到：http://blog.csdn.net/shanamaid/article/details/51474643</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span></span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>接下来说一说我对整个项目开发的理解，当然由于自身的局限性，可能有些地方理解上也存在问题，如有错误之处望各位菊苣斧正！</span></p>
+<p><span style="font-size:18px"><span style="color:#ff0000"><strong><span style="white-space:pre"></span>项目注意事项：</strong></span></span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>1、对项目的分析</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>什么叫项目分析？就是对一个项目进行深度剖析，为实现这个项目，我们需要怎么做？做哪些？如何去实现？</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>2、确定采用的技术与工具</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>举个例子，前端用到HTML&#43;CSS&#43;JS，以及各种框架和类库，比如还需要Jquery与Bootstrap。接着后端是用PHP还是Javaweb。服务器是用apache还是IIS，数据库是用mysql还是oracle。版本控制是用git还是svn，代码托管是用coding还是Github等等。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>3、统一版本号</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>类&#20284;php、jquery、bootstrap、apache等这些都有自己的版本号，这些请务必统一，每个版本之间都有不同之处，很可能开发遇到的一些BUG就是因为版本不统一带来的，这些BUG往往很难发现。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>4、人员分工</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>这个应该没什么多说的。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>5、UI设计</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>项目分析后，对项目有一个大概了解的轮廓。这个时候需要准备设计图了，由前端用Axure进行原型设计，画出一个草图后交给UI进行美化，由UI设计完成提供一批初稿。当然这一步其实也可以直接由UI开始进行设计，也无需一定要前端先进行Axure原型设计。这里&#20540;得一提的是，UI并非是做出一张图就完事，而是应该进行注释。否则可以说不同的前端拿到同一张图做出来的网站或许大体上不会有什么变化，但是细节上会存在很多差异。下面是我某个项目中用的UI设计图，这个就是很不错的</span></p>
+<p><span style="font-size:18px"><img src="http://img.blog.csdn.net/20160826131945640?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>当然这个图也只是一部分，在设计图上每个块对应的多少px也是会标注出来的，这样就解决我前段凭自己感觉去设定&#20540;所带来的规范不统一，细节上的问题，一个好的UI绝对是整个前端开发团队的福音。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>6、接口文档</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>一个好的接口文档绝对可以避免前后端打架互掐，没有接口文档，那么前后可能接一个接口就跑去问一次后端，双方都会觉得很烦，并且各位都知道言语上的交流远没有文字来得清晰和直接。我个人就比较烦问问题用QQ找我，先是一句在吗？然后打扰一下？最后再开始问问题的。诚然别人这样是出于&#31036;貌的行为，所以为了避免这种双方都不友好的情况。我更喜欢邮件交流，直接给我发邮件，说清问题在哪里？附上截图代码，解决了我直接回给你，简单明了。回到正题上，什么是接口文档。下面我附一张图，我们这个
+ 项目用的：</span></p>
+<p><span style="font-size:18px"><img src="http://img.blog.csdn.net/20160826132836537?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p></p>
+<p><span style="white-space:pre"></span></p>
+<p><br>
+</p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>有了这个文档以后对接口那还不是轻轻松松，简直不能再酸爽。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>7、交流会</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>可能很多人觉得这个东西特别形式主义，实际上这个真的有很大用。比如项目期间一周一次，可以让大家相互都了解一些各自的进程如何了？而不至于直到最后期限才发现，某某哪里没做完，某某已经做完闲了很久了。这都是非常尴尬的情况。甚至于交流会上也能学到很多东西。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span><span style="white-space:pre"></span>最后送大家一句话：</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span></span><span style="font-size:18px; white-space:pre"></span><span style="font-size:32px; color:#ff0000"><strong>前端不止前端，后端不止后端。</strong></span></p>
+<p><span style="white-space:pre"></span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

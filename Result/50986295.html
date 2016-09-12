@@ -1,0 +1,336 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+ubuntu<br>
+<br>
+<br>
+1.下载安装jdk1.8<br>
+<span style="white-space:pre"></span>1.删除已有的jdk版本<br>
+<span style="white-space:pre"></span>安装之前先检查一下系统有没有自带open-jdk<br>
+<span style="white-space:pre"></span>图片上显示我的是没有自带的，如果有可以使用rpm -qa | grep java | xargs rpm -e --nodeps 批量卸载所有带有Java的文件 &nbsp; 这句命令的关键字是java &nbsp;<br>
+<span style="white-space:pre"></span>rpm -qa | grep java<br>
+<span style="white-space:pre"></span>rpm -qa | grep jdk<br>
+<span style="white-space:pre"></span>rpm -qa | grep gcj<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>2.下载jdk<br>
+<span style="white-space:pre"></span>sudo mkdir /usr/local/java<br>
+<span style="white-space:pre"></span>cd /usr/local/java<br>
+<span style="white-space:pre"></span>wget --no-check-certificate --no-cookie --header &quot;Cookie: oraclelicense=accept-securebackup-cookie;&quot; http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-linux-x64.tar.gz<br>
+<span style="white-space:pre"></span>因为oracle现在要同意协议才能下载，直接使用wget加链接下载不到，所以要加上前面的那些代码<br>
+<span style="white-space:pre"></span>wget --no-check-certificate --no-cookie --header &quot;Cookie: oraclelicense=accept-securebackup-cookie;&quot; http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-i586.tar.gz<br>
+<span style="white-space:pre"></span>3.解压缩<br>
+<span style="white-space:pre"></span>sudo tar xvf jdk-8u25-linux-x64.tar.gz<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>4.设置环境变量<br>
+<span style="white-space:pre"></span>vim /etc/profile;<br>
+<span style="white-space:pre"></span>在最后输入<br>
+<span style="white-space:pre"></span>export JAVA_HOME=/usr/local/java/jdk1.8.0_51<br>
+<span style="white-space:pre"></span>export JRE_HOME=${JAVA_HOME}/jre<br>
+<span style="white-space:pre"></span>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>
+<span style="white-space:pre"></span>export PATH=${JAVA_HOME}/bin:$PATH<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>注意，后面不要留空&#26684;，不然会作为路径输入，还有，必须用vim，不能用windows下的输入，否则字符&#26684;式会冲突<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>5.输入命令，是环境变量配置生效<br>
+<span style="white-space:pre"></span>source /etc/profile &nbsp;<br>
+<span style="white-space:pre"></span><br>
+2.安装tomcat<br>
+<span style="white-space:pre"></span>1.下载tomcat<br>
+<span style="white-space:pre"></span>wget http://apache.fayea.com/tomcat/tomcat-7/v7.0.63/bin/apache-tomcat-7.0.63.tar.gz<br>
+<span style="white-space:pre"></span>http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.0.32/bin/apache-tomcat-8.0.32.tar.gz<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>2.解压缩<br>
+<span style="white-space:pre"></span>mkdir /usr/local/tomcat<br>
+<span style="white-space:pre"></span>cd /usr/local/tomcat<br>
+<span style="white-space:pre"></span>tar -zxvf apache-tomcat-8.0.24.tar.gz<br>
+<span style="white-space:pre"></span>cd apache-tomcat-8.0.24/bin<br>
+<span style="white-space:pre"></span>./startup.sh<span style="white-space:pre"> </span>
+打开tomcat<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span><br>
+3.安装mysql<br>
+<br>
+<br>
+<span style="white-space:pre"></span>yum安装<br>
+<span style="white-space:pre"></span>1.rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库<br>
+<span style="white-space:pre"></span>2.如果有的话删除mysql<br>
+<span style="white-space:pre"></span>yum方式安装的mysql<br>
+<span style="white-space:pre"></span>1、yum remove mysql mysql-server mysql-libs compat-mysql51<br>
+<span style="white-space:pre"></span>2、rm -rf /var/lib/mysql<br>
+<span style="white-space:pre"></span>3、rm /etc/my.cnf<br>
+<br>
+<br>
+<span style="white-space:pre"></span>查看是否还有mysql软件：<br>
+<span style="white-space:pre"></span>rpm -qa|grep mysql<br>
+<span style="white-space:pre"></span>如果存在的话，继续删除即可。<br>
+<br>
+<br>
+<span style="white-space:pre"></span>rpm方式安装的mysql<br>
+<span style="white-space:pre"></span>a）查看系统中是否以rpm包安装的mysql：<br>
+<span style="white-space:pre"></span>[root@localhost opt]# rpm -qa | grep -i mysql<br>
+<span style="white-space:pre"></span>MySQL-server-5.6.17-1.el6.i686<br>
+<span style="white-space:pre"></span>MySQL-client-5.6.17-1.el6.i686<br>
+<span style="white-space:pre"></span>b)卸载mysql<br>
+<span style="white-space:pre"></span>[root@localhost local]# rpm -e MySQL-server-5.6.17-1.el6.i686<br>
+<span style="white-space:pre"></span>[root@localhost local]# rpm -e MySQL-client-5.6.17-1.el6.i686<br>
+<span style="white-space:pre"></span>c)删除mysql服务<br>
+<span style="white-space:pre"></span>[root@localhost local]# chkconfig --list | grep -i mysql<br>
+<span style="white-space:pre"></span>[root@localhost local]# chkconfig --del mysql<br>
+<span style="white-space:pre"></span>d)删除分散mysql文件夹<br>
+<span style="white-space:pre"></span>[root@localhost local]# whereis mysql 或者 find / -name mysql<br>
+<span style="white-space:pre"></span>mysql: /usr/lib/mysql /usr/share/mysql<br>
+<span style="white-space:pre"></span>清空相关mysql的所有目录以及文件<br>
+<span style="white-space:pre"></span>rm -rf /usr/lib/mysql<br>
+<span style="white-space:pre"></span>rm -rf /usr/share/mysql<br>
+<span style="white-space:pre"></span>rm -rf /usr/my.cnf<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>3.在删除完以后我们可以通过 rpm -qa | grep mysql 命令来查看mysql是否已经卸载成功<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>4.首先我们可以输入 yum list | grep mysql 命令来查看yum上提供的mysql数据库可下载的版本<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>5.然后我们可以通过输入 yum install -y mysql-server mysql mysql-devel 命令将mysql mysql-server mysql-devel都安装好<br>
+<span style="white-space:pre"></span>(注意:安装mysql时我们并不是安装了mysql客户端就相当于安装好了mysql数据库了，我们还需要安装mysql-server服务端才行)<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>6.rpm -qi mysql-server查看刚安装好的mysql-server的版本<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>7.service mysqld start开启<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>8.<span style="white-space:pre"> </span>修改mysql的配置文件（修改默认编码）<br>
+<span style="white-space:pre"></span>复制my-large.cnf文件到/etc/my.cnf --&gt; 执行命令：<br>
+<span style="white-space:pre"></span>cp /usr/share/doc/mysql-server-4.1.12/my-large.cnf /etc/my.cnf<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>9.修改配置文件<br>
+<span style="white-space:pre"></span>sudo vim /etc/mysql/my.cnf<br>
+<span style="white-space:pre"></span>在client中加入<br>
+<span style="white-space:pre"></span>default-character-set=utf8<br>
+<span style="white-space:pre"></span>在mysqld中加入<br>
+<span style="white-space:pre"></span>character-set-server=utf8<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>10.修改密码<br>
+<span style="white-space:pre"></span>select user,password,host from mysql.user;<br>
+<span style="white-space:pre"></span>set password = password('密码')或update语句设置当前用户密码<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>11.重启mysql：service mysqld restart<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>12.导入sql<br>
+<span style="white-space:pre"></span>source /usr/local/yiliao/document/yl_server2.sql<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>apt-get安装<br>
+<span style="white-space:pre"></span>1.更新源<br>
+<span style="white-space:pre"></span>sudo apt-get update<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>2.判断是否已经安装mysql<br>
+<span style="white-space:pre"></span>sudo netstat -tap | grep mysql<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>3.安装mysql<br>
+<span style="white-space:pre"></span>sudo apt-get install mysql-server mysql-client<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>4.修改配置文件<br>
+<span style="white-space:pre"></span>sudo vim /etc/mysql/my.cnf<br>
+<span style="white-space:pre"></span>在client中加入<br>
+<span style="white-space:pre"></span>default-character-set=utf8<br>
+<span style="white-space:pre"></span>在mysqld中加入<br>
+<span style="white-space:pre"></span>character-set-server=utf8<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>5.修改密码<br>
+<span style="white-space:pre"></span>select user,password,host from mysql.user;<br>
+<span style="white-space:pre"></span>set password = password('密码')或update语句设置当前用户密码<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>6.开启远程访问权限<br>
+<span style="white-space:pre"></span>vim /etc/mysql/my.cnf<br>
+<span style="white-space:pre"></span>将bind-address = 127.0.0.1注释掉<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>7.重启mysql<br>
+<span style="white-space:pre"></span>/etc/init.do/mysql restart<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>8.导入sql<br>
+<span style="white-space:pre"></span>source /usr/local/yiliao/document/yl_server2.sql<br>
+<span style="white-space:pre"></span>&#20284;乎在PRIMARY KEY (`pid`) &nbsp;comment '')不行，要PRIMARY KEY (`pid`) &nbsp;)这样才行<br>
+<span style="white-space:pre"></span><br>
+4.安装maven<br>
+<span style="white-space:pre"></span>1.下载maven<br>
+<span style="white-space:pre"></span>mkdir /usr/local/maven<br>
+<span style="white-space:pre"></span>cd /usr/local/maven<br>
+<span style="white-space:pre"></span>wget http://mirror.bit.edu.cn/apache/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>2.解压<br>
+<span style="white-space:pre"></span>tar -xzf apache-maven-3.3.3-bin.tar.gz<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>3.设置环境变量<br>
+<span style="white-space:pre"></span>vim /etc/profile<br>
+<span style="white-space:pre"></span>在最后追加<br>
+<span style="white-space:pre"></span>export M2_HOME=/usr/local/maven/apache-maven-3.3.3<br>
+<span style="white-space:pre"></span>export PATH=${M2_HOME}/bin:$PATH<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>4.输入命令，是环境变量配置生效<br>
+<span style="white-space:pre"></span>source /etc/profile &nbsp;<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>5.测试是否生效<br>
+<span style="white-space:pre"></span>mvn -v<br>
+<br>
+<br>
+5.安装git<br>
+<span style="white-space:pre"></span>apt-get install git<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>yum install git<br>
+<span style="white-space:pre"></span>git从1.7升级到2.2<br>
+<span style="white-space:pre"></span>安装需求：<br>
+<span style="white-space:pre"></span>&gt;# yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc<br>
+<span style="white-space:pre"></span>&gt;# yum install &nbsp;gcc perl-ExtUtils-MakeMaker &nbsp;&nbsp;<br>
+<span style="white-space:pre"></span>&nbsp;&nbsp;<br>
+<span style="white-space:pre"></span>error: ```/utf8.c:463: undefined reference to `libiconv'```<br>
+<span style="white-space:pre"></span>&gt;# wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz<br>
+<span style="white-space:pre"></span>&gt;# tar zxvf libiconv-1.14.tar.gz&nbsp;<br>
+<span style="white-space:pre"></span>&gt;# cd libiconv-1.14<br>
+<span style="white-space:pre"></span>&gt;# ./configure --prefix=/usr/local/libiconv<br>
+<span style="white-space:pre"></span>&gt;# make &amp;&amp; make install<br>
+<span style="white-space:pre"></span>卸载Centos自带的git1.7.1:<br>
+<br>
+<br>
+<span style="white-space:pre"></span>通过git –version查看系统带的版本，Cento6.5应该自带的是git版本是1.7.1<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&gt;# yum remove git<br>
+<span style="white-space:pre"></span>下载git2.2.1并将git添加到环境变量中<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&gt;# wget https://github.com/git/git/archive/v2.2.1.tar.gz<br>
+<span style="white-space:pre"></span>&gt;# tar zxvf v2.2.1.tar.gz<br>
+<span style="white-space:pre"></span>&gt;# cd git-2.2.1<br>
+<span style="white-space:pre"></span>&gt;# make configure<br>
+<span style="white-space:pre"></span>&gt;# ./configure --prefix=/usr/local/git --with-iconv=/usr/local/libiconv<br>
+<span style="white-space:pre"></span>&gt;# make all doc<br>
+<span style="white-space:pre"></span>&gt;# make install install-doc install-html<br>
+<span style="white-space:pre"></span>&gt;# echo &quot;export PATH=$PATH:/usr/local/git/bin&quot; &gt;&gt; /etc/bashrc<br>
+<span style="white-space:pre"></span>&gt;# source /etc/bashrc<br>
+<span style="white-space:pre"></span>查看版本号<br>
+<span style="white-space:pre"></span>&gt;# git --version<br>
+<span style="white-space:pre"></span>&gt;git version 2.2.1<br>
+<span style="white-space:pre"></span><br>
+6.用maven打包<br>
+<span style="white-space:pre"></span>1.在pom.xml目录下运行mvn clean package<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>2.解决各种各样的error和warning，参考收藏的网页<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>3.将生成的war包放到tomcat的webapps下<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>4.修改配置文件conf/server.xml<br>
+<span style="white-space:pre"></span>&lt;Context path=&quot;/&quot; docBase=&quot;D:/apache-tomcat-7.0.62/webapps/yiliao-server.war&quot; debug=&quot;5&quot; reloadable=&quot;true&quot; crossContext=&quot;true&quot;&gt;<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&nbsp;&lt;Resource name=&quot;jdbc/TestDB&quot; auth=&quot;Container&quot; type=&quot;javax.sql.DataSource&quot;<br>
+<span style="white-space:pre"></span>&nbsp; maxActive=&quot;100&quot; maxIdle=&quot;30&quot; maxWait=&quot;10000&quot;<br>
+<span style="white-space:pre"></span>&nbsp; username=&quot;root&quot; password=&quot;root&quot; driverClassName=&quot;com.mysql.jdbc.Driver&quot;<br>
+<span style="white-space:pre"></span>&nbsp; url=&quot;jdbc:mysql://localhost:3306/yl&quot;/&gt;<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&lt;/Context&gt;<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>5.运行startup.sh，将生成的文件夹中的内容取代ROOT文件夹中的内容<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>6.将ROOT文件夹放到vps上<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span><br>
+6.maven 自动部署到tomcat<br>
+<span style="white-space:pre"></span>1.pom.xml设置<br>
+<span style="white-space:pre"></span>&lt;!--servlet-api,maven打包时需要--&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;dependency&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;groupId&gt;javax.servlet&lt;/groupId&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;version&gt;3.1.0&lt;/version&gt;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &lt;/dependency&gt;<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>&lt;build&gt;<br>
+<span style="white-space:pre"></span>&lt;finalName&gt;yiliao-server&lt;/finalName&gt;<br>
+<span style="white-space:pre"></span>&lt;plugins&gt;<br>
+<span style="white-space:pre"></span>&lt;!--解决[WARNING] Warning: selected war files include a WEB-INF/web.xml which will be ignored--&gt;<br>
+<span style="white-space:pre"></span>&lt;plugin&gt;<br>
+<span style="white-space:pre"></span>&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;<br>
+<span style="white-space:pre"></span>&lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;<br>
+<span style="white-space:pre"></span>&lt;version&gt;2.1.1&lt;/version&gt;<br>
+<span style="white-space:pre"></span>&lt;configuration&gt;<br>
+<span style="white-space:pre"></span>&lt;!-- http://maven.apache.org/plugins/maven-war-plugin/ --&gt;<br>
+<span style="white-space:pre"></span>&lt;packagingExcludes&gt;WEB-INF/web.xml&lt;/packagingExcludes&gt;<br>
+<span style="white-space:pre"></span>&lt;/configuration&gt;<br>
+<span style="white-space:pre"></span>&lt;/plugin&gt;<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&lt;!--自动部署--&gt;<br>
+<span style="white-space:pre"></span>&lt;plugin&gt;<br>
+<span style="white-space:pre"></span>&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;<br>
+<span style="white-space:pre"></span>&lt;artifactId&gt;tomcat-maven-plugin&lt;/artifactId&gt;<br>
+<span style="white-space:pre"></span>&lt;version&gt;1.1&lt;/version&gt;<br>
+<span style="white-space:pre"></span>&lt;configuration&gt;<br>
+<span style="white-space:pre"></span>&lt;url&gt;http://localhost:8080/manager/text&lt;/url&gt;<br>
+<span style="white-space:pre"></span>&lt;server&gt;tomcat&lt;/server&gt;<br>
+<span style="white-space:pre"></span>&lt;path&gt;/&lt;/path&gt;<br>
+<span style="white-space:pre"></span>&lt;/configuration&gt;<br>
+<span style="white-space:pre"></span>&lt;/plugin&gt;<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&lt;/plugins&gt;<br>
+<span style="white-space:pre"></span>&lt;/build&gt;<br>
+<br>
+<br>
+<span style="white-space:pre"></span>&lt;!--为maven打包时设置编码字符集--&gt;<br>
+<span style="white-space:pre"></span>&lt;properties&gt;<br>
+<span style="white-space:pre"></span>&lt;project.build.sourceEncoding&gt;<br>
+<span style="white-space:pre"></span>UTF-8<br>
+<span style="white-space:pre"></span>&lt;/project.build.sourceEncoding&gt;<br>
+<span style="white-space:pre"></span>&lt;/properties&gt;<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>2.设置tomcat7/conf/tomcat-users.xml<br>
+<span style="white-space:pre"></span>&lt;role rolename=&quot;admin&quot;/&gt;<br>
+<span style="white-space:pre"></span>&lt;role rolename=&quot;manager&quot;/&gt;<br>
+<span style="white-space:pre"></span>&lt;role rolename=&quot;manager-gui&quot;/&gt;<br>
+<span style="white-space:pre"></span>&lt;role rolename=&quot;manager-script&quot;/&gt;<br>
+<span style="white-space:pre"></span>&lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;admin,manager,manager-gui,manager-script&quot;/&gt;<br>
+<span style="white-space:pre"></span>&nbsp;<br>
+<span style="white-space:pre"></span>最终要的是哪个manager的role，用来的登陆<br>
+<span style="white-space:pre"></span>&nbsp;<br>
+<span style="white-space:pre"></span>3.设置maven3/conf/settings.xml<br>
+<span style="white-space:pre"></span>这里的账号密码与上面对应<br>
+<span style="white-space:pre"></span>&lt;server&gt;<br>
+<span style="white-space:pre"></span>&nbsp;&lt;id&gt;tomcat&lt;/id&gt;<br>
+<span style="white-space:pre"></span>&nbsp;&lt;username&gt;admin&lt;/username&gt;<br>
+<span style="white-space:pre"></span>&nbsp;&lt;password&gt;admin&lt;/password&gt;<br>
+<span style="white-space:pre"></span>&lt;/server&gt;<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>4.mvn tomcat:redeploy 在pom.xml同级目录下
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

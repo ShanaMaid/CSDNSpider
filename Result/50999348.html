@@ -1,0 +1,160 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><img alt="大笑" src="http://static.blog.csdn.net/xheditor/xheditor_emot/default/laugh.gif" style="font-size:18px"><span style="font-size:18px">相信许多小伙伴都想知道CSS&#43;JS如何实现物体的曲线运动吧！</span></p>
+<p></p>
+<p><strong><span style="font-size:18px">其实原理就是运用数学用的函数公式，本文运用的是sin函数上进行的基础变形.</span></strong></p>
+<p><span style="font-size:18px">今天的主要目标就是让这张图的里足球运动起来。</span></p>
+<p><span style="font-size:18px"><img src="http://img.blog.csdn.net/20160410154305395?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:18px"><img src="" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">首先肯定要先把这张图拆成两部分，这里我是用美图秀秀的抠图功能把足球扣出来的，再用消除笔把足球在原图中消除掉。得到以下的2张图。</span></p>
+<p><span style="font-size:18px"><img src="http://img.blog.csdn.net/20160410154324582?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:18px"><img src="http://img.blog.csdn.net/20160410154335942?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+</span></p>
+<p><span style="font-size:18px"><img src="" alt=""><img src="" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">注意，足球必须是png，图片，这样在图片上运动的时候才不会把原图中的背景覆盖掉，形成正方形的白块。</span></p>
+<p><span style="font-size:18px">index.html文件内容，没什么特别的。就不用多说了</span></p>
+<p><span style="font-size:18px">&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+<span style="white-space:pre"></span>&lt;title&gt;&lt;/title&gt;<br>
+<span style="white-space:pre"></span>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/css_index.css&quot;&gt;<br>
+<span style="white-space:pre"></span>&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.6.2.min.js&quot;&gt;&lt;/script&gt;<br>
+<span style="white-space:pre"></span>&lt;script type=&quot;text/javascript&quot; src=&quot;js/js_index.js&quot;&gt;&lt;/script&gt;<br>
+<span style="white-space:pre"></span><br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+<span style="white-space:pre"></span>&lt;img src=&quot;pic/bg1_0.png&quot; class=&quot;bg&quot;&gt;<br>
+<span style="white-space:pre"></span>&lt;img src=&quot;pic/ball.png&quot; id=&quot;ball&quot;&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">CSS样式也挺一般！</span></p>
+<p><span style="font-size:18px">css_index.css</span></p>
+<p><span style="font-size:18px">*{<br>
+<span style="white-space:pre"></span>margin: 0px;<br>
+<span style="white-space:pre"></span>padding: 0px;<br>
+}<br>
+body{<br>
+<span style="white-space:pre"></span>height: 900px;<br>
+<span style="white-space:pre"></span>width: 1440px;<br>
+}<br>
+.bg{<br>
+<span style="white-space:pre"></span>width: 100%;<br>
+<span style="white-space:pre"></span>height: 100%;<br>
+}<br>
+<br>
+<br>
+#ball{<br>
+<span style="white-space:pre"></span>position: absolute;<br>
+<span style="white-space:pre"></span>width: 100px;<br>
+<span style="white-space:pre"></span>height:100px;<br>
+<span style="white-space:pre"></span>left: 400px;<br>
+<span style="white-space:pre"></span>top: 350px;<br>
+<span style="white-space:pre"></span><br>
+}<br>
+<br>
+接下来就是最核心的JS部分了。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">js_index.js文件</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">var l=400;//球的left距离<br>
+var t=350;//球的top距离<br>
+var a=1;//计数器<br>
+var pi = 3.14;//pi<br>
+$(document).ready(function(){<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>window.setInterval(&quot;ball_go()&quot;,5);//让球每隔5毫秒运动一次即 每五秒执行一次ball_go函数<br>
+})<br>
+<br>
+<br>
+<br>
+<br>
+function ball_go(){<br>
+<span style="white-space:pre"></span><br>
+<span style="white-space:pre"></span>var i= document.getElementById(&quot;ball&quot;);<br>
+<span style="white-space:pre"></span>var change =parseInt(sport_line(l-a));<br>
+<span style="white-space:pre"></span>i.style.transform = 'rotate('&#43;a*10&#43;'deg)';//让球开始旋转<br>
+<span style="white-space:pre"></span>console.log(t);</span></p>
+<p><span style="font-size:18px"><span style="white-space:pre"></span>//当球抵达目标位置的时候，球停止曲线运动,即a=280的时候球不再曲线运动，只进行旋转<br>
+<span style="white-space:pre"></span>if(a&lt;=280){<br>
+<span style="white-space:pre"></span>i.style.left = (l-a)&#43;&quot;px&quot;;<br>
+<span style="white-space:pre"></span>i.style.top &nbsp;= (change)&#43;&quot;px&quot;;<br>
+<span style="white-space:pre"></span>}<br>
+<span style="white-space:pre"></span>a&#43;&#43;;<br>
+}<br>
+<br>
+<br>
+//运动曲线<br>
+function sport_line(x){<br>
+<span style="white-space:pre"></span>var y;<br>
+<span style="white-space:pre"></span>y= 115-Math.sin((x-100)/200*pi)*235;//决定球运动轨迹的函数,公式理解需一定数学基础，理解sin函数的人应该不会陌生，画出曲线图应该可以理解<br>
+<br>
+<br>
+<span style="white-space:pre"></span>return y;<br>
+}<br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">大致就这样，挺简单了，相信各位都能看懂吧！当然网上也有工具可以自定义生成运动轨迹，大家可以去看看！</span></p>
+<p><br>
+</p>
+<p><span style="font-size:18px">下面附有完整的文件，解压后就可以直接运行！</span></p>
+<p><span style="font-size:18px">http://download.csdn.net/detail/shanamaid/9486577<br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:24px">非常抱歉</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">之前上传的代码JS部分有个符号打成中文的了</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">导致无法出现足球运动的效果，现在已经修正并重新上传！</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

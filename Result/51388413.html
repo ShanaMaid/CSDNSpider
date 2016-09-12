@@ -1,0 +1,653 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<span style="font-size:24px"><br>
+<br>
+</span>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><a target="_blank" href="http://www.w3.org/" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">W3C</a>标准中对<a target="_blank" href="http://www.w3.org/TR/css3-roadmap/" rel="nofollow" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">CSS3</a>的<a target="_blank" href="http://www.w3.org/TR/css3-transitions/" rel="nofollow" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">transition</a>这是样描述的:“CSS的transition允许CSS的属性&#20540;在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性&#20540;。”</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">下面我们从最简单的语法和属性&#20540;开始一步一步来学习transition的具体使用：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_961695" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition ： [&lt;'transition-property'&gt; || &lt;'transition-duration'&gt; ||</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">&lt;'transition-timing-function'&gt; || &lt;'transition-delay'&gt; [, [&lt;'transition-property'&gt; ||</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">&lt;'transition-duration'&gt; || &lt;'transition-timing-function'&gt; || &lt;'transition-delay'&gt;]]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition主要包含四个属性&#20540;：执行变换的属性：transition-property；变换延续的时间：transition- duration；在延续时间段，变换的速率变化transition-timing-function；变换延迟时间transition- delay。下面分别来看这四个属性&#20540;：</span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">一、transition-property：</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_61355" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-property ： none | all | [ &lt;IDENT&gt; ] [ ',' &lt;IDENT&gt; ]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-property是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个&#20540;：none(没有属 性改 变)；all（所有属性改变）这个也是其默认&#20540;；indent（元素属性名）；当其&#20540;为none时，transition马上停止执行，当指定为all 时，则元素产生任何属性&#20540;变化时都将执行transition效果，ident是可以指定元素的某一个属性&#20540;。其对应的类型如下：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">1、color： 通过红、绿、蓝和透明度组件变换（每个数&#20540;单独处理），如：background-color，border-color，color，outline-color等CSS属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">2、length：真实的数字，如：word-spacing，width，vertical- align，top，right，bottom，left，padding，outline-width，margin，min-width，min- height，max-width，max-height，line-height，height，border-width，border- spacing，background-position等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">3、percentage：真实的数字，如：word-spacing，width，vertical- align，top，right，bottom，left，min-width，min- height，max-width，max-height，line-height，height，background-position等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">4、integer离散步骤（整个数字），在真实的数字空间，以及使用floor()转换为整数时发生，如：outline-offset，z-index等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">5、number真实的（浮点型）数&#20540;，如：zoom，opacity，font-weight等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">6、transform list：详情请参阅：《<a target="_blank" href="http://www.w3cplus.com/content/css3-transform" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">CSS3 Transform</a>》。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">7、rectangle：通过x、 y、 width和height（转为数&#20540;）变换，如：crop；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">8、visibility：离散步骤，在0到1数字范围之内，0表示“隐藏”，1表示完全“显示”,如：visibility；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">9、shadow：作用于color、x、y、和blur（模糊）属性，如：text-shadow；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">10、gradient：通过每次停止时的位置和颜色进行变化。它们必须有相同的类型（放射状的或是线性的）和相同的停止数&#20540;以便执行动画，如：background-image；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">11、paint server (SVG)：只支持下面的情况：从gradient到gradient以及color到color，然后工作与上面类&#20284;；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">12、space-separated list of above：如果列表有相同的项目数&#20540;，则列表每一项按照上面的规则进行变化，否则无变化；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">13、a shorthand property：如果缩写的所有部分都可以实现动画，则会像所有单个属性变化一样变化。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">具体什么CSS属性可以实现transition效果，在W3C官网中列出了所有可以实现transition效果的CSS属性&#20540;以及&#20540;的类型，大家可以点<a target="_blank" href="http://www.w3.org/TR/css3-transitions/#properties-from-css-" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">这里</a>了解详情。这里需要提醒一点是，并不是什么属性改变都为触发transition动作效果，比如页面的自适应宽度，当浏览器改变宽度时，并不会触发transition的效果。但上述表&#26684;所示的属性类型改变都会触发一个transition动作效果。</span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">二、transition-duration：</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_233888" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-duration ： &lt;time&gt; [, &lt;time&gt;]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-duration是用来指定元素 转换过程的持续时间，取&#20540;：&lt;time&gt;为数&#20540;，单位为s（秒）,可以作用于所有元素，包括:before和:after伪元素。其默认&#20540;是0，也就是变换时是即时的。</span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">三、transition-timing-function：</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_132100" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-timing-function ： ease | linear | ease-in | ease-out | ease-in-out |</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;) [, ease | linear | ease-in |</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">ease-out | ease-in-out | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;)]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">取&#20540;：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-timing-function的&#20540;允许你根据时间的推进去改变属性&#20540;的变换速率，transition-timing-function有6个可能&#20540;：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">1、ease：（逐渐变慢）默认&#20540;，ease函数等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">2、linear：（匀速），linear 函数等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(0.42, 0, 1.0, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, 0.58, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">6、cubic-bezier：（该&#20540;允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个&#20540;特定于曲线上点P1和点P2。所有&#20540;需在[0, 1]区域内，否则无效。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">其是cubic-bezier为通过贝赛尔曲线来计算“转换”过程中的属性&#20540;，如下曲线所示，通过改变P1(x1, y1)和P2(x2, y2)的坐标可以改变整个过程的Output Percentage。初始默认&#20540;为default。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><img alt="\" border="0" src="http://www.php100.com/uploadfile/2012/1029/20121029075655654.jpg" style="padding:0px; margin:0px; border-width:0px"></span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">其他几个属性的示意图：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><img alt="\" border="0" src="http://www.php100.com/uploadfile/2012/1029/20121029075656108.jpg" style="padding:0px; margin:0px; border-width:0px"></span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">四、transition-delay:</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_867460" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-duration ： &lt;time&gt; [, &lt;time&gt;]*transition-delay ： &lt;time&gt; [, &lt;time&gt;]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-delay是用来指定一个动画开始执行的时间，也就是说当改变元素属性&#20540;后多长时间开始执行transition效果，取 &#20540;：&lt;time&gt;为数&#20540;，单位为s（秒），它的使用和transition-duration极其相&#20284;，也可以作用于所有元素，包 括:before和:after伪元素。 默认大小是”0″，也就是变换立即执行，没有延迟。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">有时我们不只改变一个CSS效果的属性,而是想改变两个或者多个CSS属性的transition效果，那么我们只要把几个transition的 声明串 在一起，用逗号（“，”）隔开，然后各自可以有各自不同的延续时间和其时间的速率变换方式。但需要&#20540;得注意的一点：transition-delay与 transition-duration的&#20540;都是时间，所以要区分它们在连写中的位置，一般浏览器会根据先后顺序决定，第一个可以解析为时间的怭&#20540;为 transition-duration第二个为transition-delay。如：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_446976" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">4</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">5</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">6</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">a {</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-moz-transition: background 0.5s ease-in,color 0.3s ease-out;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-webkit-transition: background 0.5s ease-in,color 0.3s ease-out;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-o-transition: background 0.5s ease-in,color 0.3s ease-out;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition: background 0.5s ease-in,color 0.3s ease-out; }</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">}</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">如果你想给元素执行所有transition效果的属性，那么我们还可以利用all属性&#20540;来操作，此时他们共享同样的延续时间以及速率变换方式，如：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_881914" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">4</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">5</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">6</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">a {</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-moz-transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-webkit-transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-o-transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">}</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">综合上述我们可以给transition一个速记法：transition: &lt;property&gt;&nbsp;&lt;duration&gt;&nbsp;&lt;animation type&gt;&nbsp;&lt;delay&gt;如下图所示：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><img alt="\" border="0" src="http://www.php100.com/uploadfile/2012/1029/20121029075656932.jpg" style="padding:0px; margin:0px; border-width:0px"></span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">相对应的一个示例代码：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_347725" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">4</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">5</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">6</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">p {</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-webkit-transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-o-transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-moz-transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">}</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px">
+<span style="font-size:24px">原文地址：<a target="_blank" href="http://www.w3cplus.com/content/css3-transition" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">http://www.w3cplus.com/content/css3-transition</a></span></p>
+</div>
+</div>
+<div style="top:0px">
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><a target="_blank" href="http://www.w3.org/" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">W3C</a>标准中对<a target="_blank" href="http://www.w3.org/TR/css3-roadmap/" rel="nofollow" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">CSS3</a>的<a target="_blank" href="http://www.w3.org/TR/css3-transitions/" rel="nofollow" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">transition</a>这是样描述的:“CSS的transition允许CSS的属性&#20540;在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性&#20540;。”</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">下面我们从最简单的语法和属性&#20540;开始一步一步来学习transition的具体使用：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_961695" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition ： [&lt;'transition-property'&gt; || &lt;'transition-duration'&gt; ||</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">&lt;'transition-timing-function'&gt; || &lt;'transition-delay'&gt; [, [&lt;'transition-property'&gt; ||</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">&lt;'transition-duration'&gt; || &lt;'transition-timing-function'&gt; || &lt;'transition-delay'&gt;]]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition主要包含四个属性&#20540;：执行变换的属性：transition-property；变换延续的时间：transition- duration；在延续时间段，变换的速率变化transition-timing-function；变换延迟时间transition- delay。下面分别来看这四个属性&#20540;：</span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">一、transition-property：</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_61355" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-property ： none | all | [ &lt;IDENT&gt; ] [ ',' &lt;IDENT&gt; ]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-property是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个&#20540;：none(没有属 性改 变)；all（所有属性改变）这个也是其默认&#20540;；indent（元素属性名）；当其&#20540;为none时，transition马上停止执行，当指定为all 时，则元素产生任何属性&#20540;变化时都将执行transition效果，ident是可以指定元素的某一个属性&#20540;。其对应的类型如下：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">1、color： 通过红、绿、蓝和透明度组件变换（每个数&#20540;单独处理），如：background-color，border-color，color，outline-color等CSS属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">2、length：真实的数字，如：word-spacing，width，vertical- align，top，right，bottom，left，padding，outline-width，margin，min-width，min- height，max-width，max-height，line-height，height，border-width，border- spacing，background-position等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">3、percentage：真实的数字，如：word-spacing，width，vertical- align，top，right，bottom，left，min-width，min- height，max-width，max-height，line-height，height，background-position等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">4、integer离散步骤（整个数字），在真实的数字空间，以及使用floor()转换为整数时发生，如：outline-offset，z-index等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">5、number真实的（浮点型）数&#20540;，如：zoom，opacity，font-weight等属性；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">6、transform list：详情请参阅：《<a target="_blank" href="http://www.w3cplus.com/content/css3-transform" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">CSS3 Transform</a>》。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">7、rectangle：通过x、 y、 width和height（转为数&#20540;）变换，如：crop；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">8、visibility：离散步骤，在0到1数字范围之内，0表示“隐藏”，1表示完全“显示”,如：visibility；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">9、shadow：作用于color、x、y、和blur（模糊）属性，如：text-shadow；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">10、gradient：通过每次停止时的位置和颜色进行变化。它们必须有相同的类型（放射状的或是线性的）和相同的停止数&#20540;以便执行动画，如：background-image；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">11、paint server (SVG)：只支持下面的情况：从gradient到gradient以及color到color，然后工作与上面类&#20284;；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">12、space-separated list of above：如果列表有相同的项目数&#20540;，则列表每一项按照上面的规则进行变化，否则无变化；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">13、a shorthand property：如果缩写的所有部分都可以实现动画，则会像所有单个属性变化一样变化。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">具体什么CSS属性可以实现transition效果，在W3C官网中列出了所有可以实现transition效果的CSS属性&#20540;以及&#20540;的类型，大家可以点<a target="_blank" href="http://www.w3.org/TR/css3-transitions/#properties-from-css-" target="_blank" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">这里</a>了解详情。这里需要提醒一点是，并不是什么属性改变都为触发transition动作效果，比如页面的自适应宽度，当浏览器改变宽度时，并不会触发transition的效果。但上述表&#26684;所示的属性类型改变都会触发一个transition动作效果。</span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">二、transition-duration：</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_233888" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-duration ： &lt;time&gt; [, &lt;time&gt;]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-duration是用来指定元素 转换过程的持续时间，取&#20540;：&lt;time&gt;为数&#20540;，单位为s（秒）,可以作用于所有元素，包括:before和:after伪元素。其默认&#20540;是0，也就是变换时是即时的。</span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">三、transition-timing-function：</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_132100" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-timing-function ： ease | linear | ease-in | ease-out | ease-in-out |</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;) [, ease | linear | ease-in |</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">ease-out | ease-in-out | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;)]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">取&#20540;：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-timing-function的&#20540;允许你根据时间的推进去改变属性&#20540;的变换速率，transition-timing-function有6个可能&#20540;：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">1、ease：（逐渐变慢）默认&#20540;，ease函数等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">2、linear：（匀速），linear 函数等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">3、ease-in：(加速)，ease-in 函数等同于贝塞尔曲线(0.42, 0, 1.0, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">4、ease-out：（减速），ease-out 函数等同于贝塞尔曲线(0, 0, 0.58, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">5、ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)；</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">6、cubic-bezier：（该&#20540;允许你去自定义一个时间曲线）， 特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个&#20540;特定于曲线上点P1和点P2。所有&#20540;需在[0, 1]区域内，否则无效。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">其是cubic-bezier为通过贝赛尔曲线来计算“转换”过程中的属性&#20540;，如下曲线所示，通过改变P1(x1, y1)和P2(x2, y2)的坐标可以改变整个过程的Output Percentage。初始默认&#20540;为default。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><img alt="\" border="0" src="http://www.php100.com/uploadfile/2012/1029/20121029075655654.jpg" style="padding:0px; margin:0px; border-width:0px"></span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">其他几个属性的示意图：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><img alt="\" border="0" src="http://www.php100.com/uploadfile/2012/1029/20121029075656108.jpg" style="padding:0px; margin:0px; border-width:0px"></span></p>
+<h3 style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">四、transition-delay:</span></h3>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">语法：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_867460" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition-duration ： &lt;time&gt; [, &lt;time&gt;]*transition-delay ： &lt;time&gt; [, &lt;time&gt;]*</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">transition-delay是用来指定一个动画开始执行的时间，也就是说当改变元素属性&#20540;后多长时间开始执行transition效果，取 &#20540;：&lt;time&gt;为数&#20540;，单位为s（秒），它的使用和transition-duration极其相&#20284;，也可以作用于所有元素，包 括:before和:after伪元素。 默认大小是”0″，也就是变换立即执行，没有延迟。</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">有时我们不只改变一个CSS效果的属性,而是想改变两个或者多个CSS属性的transition效果，那么我们只要把几个transition的 声明串 在一起，用逗号（“，”）隔开，然后各自可以有各自不同的延续时间和其时间的速率变换方式。但需要&#20540;得注意的一点：transition-delay与 transition-duration的&#20540;都是时间，所以要区分它们在连写中的位置，一般浏览器会根据先后顺序决定，第一个可以解析为时间的怭&#20540;为 transition-duration第二个为transition-delay。如：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_446976" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">4</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">5</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">6</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">a {</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-moz-transition: background 0.5s ease-in,color 0.3s ease-out;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-webkit-transition: background 0.5s ease-in,color 0.3s ease-out;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-o-transition: background 0.5s ease-in,color 0.3s ease-out;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition: background 0.5s ease-in,color 0.3s ease-out; }</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">}</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">如果你想给元素执行所有transition效果的属性，那么我们还可以利用all属性&#20540;来操作，此时他们共享同样的延续时间以及速率变换方式，如：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_881914" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">4</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">5</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">6</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">a {</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-moz-transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-webkit-transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-o-transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition: all 0.5s ease-in;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">}</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">综合上述我们可以给transition一个速记法：transition: &lt;property&gt;&nbsp;&lt;duration&gt;&nbsp;&lt;animation type&gt;&nbsp;&lt;delay&gt;如下图所示：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px"><img alt="\" border="0" src="http://www.php100.com/uploadfile/2012/1029/20121029075656932.jpg" style="padding:0px; margin:0px; border-width:0px"></span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">相对应的一个示例代码：</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<span style="font-size:24px">&nbsp;</span></p>
+<div style="padding:0px; margin:0px; border-width:0px; font-family:宋体,Arial,sans-serif; line-height:25px; background-color:rgb(239,244,250)">
+<div id="highlighter_347725" style="padding:0px; margin:0px; border-width:0px">
+<table border="0" cellpadding="0" cellspacing="0" style="padding:0px; margin:0px; border-width:0px">
+<tbody style="padding:0px; margin:0px">
+<tr style="padding:0px; margin:0px">
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">1</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">2</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">3</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">4</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">5</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">6</span></div>
+</td>
+<td style="padding:0px; margin:0px">
+<div style="padding:0px; margin:0px; border-width:0px">
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">p {</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-webkit-transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-o-transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">-moz-transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">transition: all .5s ease-in-out 1s;</span></div>
+<div style="padding:0px; margin:0px; border-width:0px"><span style="font-size:24px">}</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px">
+<span style="font-size:24px">&nbsp;</span></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:22px">
+<span style="font-size:24px">原文地址：<a target="_blank" href="http://www.w3cplus.com/content/css3-transition" style="padding:0px; margin:0px; color:rgb(98,111,145); text-decoration:none">http://www.w3cplus.com/content/css3-transition</a></span></p>
+</div>
+</div>
+</div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B

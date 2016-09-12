@@ -1,0 +1,143 @@
+<meta charset="utf-8"><div id="article_content" class="article_content">
+
+<p><span style="font-size:24px">在谈到less之前我们先来看看一串css代码</span></p>
+<p></p>
+<pre code_snippet_id="1807654" snippet_file_name="blog_20160804_1_901732"  name="code" class="html">body {
+  background: #efefef;
+}
+
+div{
+	border-right: 1px #efefef solid;
+}
+
+span{
+	color: #efefef;
+}
+
+
+p{
+	background-color: #efefef;
+}
+</pre><br>
+<span style="font-size:24px">可以发现我们队四个标签用的颜色都是一样的，当我们要将四个标签的颜色都改成另外一种颜色的时候，如果我们依然用css，那么我们只有挨个挨个去复制粘贴。现在是四个标签，以后10个100个呢？想想都头大！<img src="http://img.blog.csdn.net/20160804151027568?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span>
+<p></p>
+<p><span style="font-size:24px">那么为什么不考虑用一个变量来存储这个颜色&#20540;，当我们要修改颜色的时候这用修改变量的&#20540;不就可以了吗？所以，当用了less的时候，我们可以在less文件中这用写</span></p>
+<p><span style="font-size:24px"></span></p>
+<pre code_snippet_id="1807654" snippet_file_name="blog_20160804_2_1792886"  code_snippet_id="1807654" snippet_file_name="blog_20160804_2_1792886" name="code" class="html">@base: #f938ab;
+
+body {
+  background:@base;
+}
+
+div{
+	border-right: 1px @base solid;
+}
+
+span{
+	color:@base;
+}
+
+
+p{
+	background-color:@base;
+}
+
+</pre><span style="font-size:24px">颜色的&#20540;我们用base存储了，也是说如果我们要修改使用了base的标签的颜色的时候直接修改base变量&#20540;了。</span>
+<p></p>
+<p><span style="font-size:24px">没错，这就是less<img src="http://img.blog.csdn.net/20160804151101521?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>
+<br>
+</span></p>
+<p><span style="font-size:24px">当然以上展示的肯定只是less的冰山一角，比如下面这串代码，稍微有点C语言、java基础的都能看懂吧。</span></p>
+<p><span style="font-size:24px"></span></p>
+<pre code_snippet_id="1807654" snippet_file_name="blog_20160804_3_8456005"  code_snippet_id="1807654" snippet_file_name="blog_20160804_3_8456005" name="code" class="html">@base: #f938ab;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div { .box-shadow(0 0 5px, 30%) }
+}</pre><br>
+<span style="font-size:24px">你发现了什么？没错 &nbsp;when！！！条件判断~~~</span><img src="http://img.blog.csdn.net/20160804151317524?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">
+<p></p>
+<p><span style="font-size:24px">这也是less为css带来的强大功能！</span></p>
+<p><span style="font-size:24px">上述代码经过编译后得到的是什么？</span></p>
+<p><span style="font-size:24px">如下</span></p>
+<pre code_snippet_id="1807654" snippet_file_name="blog_20160804_4_26953"  code_snippet_id="1807654" snippet_file_name="blog_20160804_4_26953" name="code" class="html">.box {
+  color: #fe33ac;
+  border-color: #fdcdea;
+}
+.box div {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}</pre><span style="font-size:24px">有同学会说了，搞错了没？那么多行编译后就这点内容，我不如直接写原生的css，还用less做什么</span><img src="http://img.blog.csdn.net/20160804151542133?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">
+<p></p>
+<p><span style="font-size:24px">我只能说少年你太年轻了<img src="http://img.blog.csdn.net/20160804151621794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p><span style="font-size:24px">如果你做一个项目的时候你就会发现很多样式地方存在复用的情况，如果这个时候使用less，你就能把这些样式封装成一个函数，直接通过传参生成属性相同，但是属性&#20540;不同的样式，工作量就轻很多了，而不是单纯的复制粘贴。</span></p>
+<p><span style="font-size:24px">这里的.box-shadow充当的就是函数的功能，</span></p>
+<p><span style="font-size:24px">所以说less其实还是很吊的，有木有？<img src="http://img.blog.csdn.net/20160804151930846?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">是不是很激动~\(≧▽≦)/~啦啦啦，很想学啦~</span></p>
+<p><span style="font-size:24px">先给大家吃一记定心丸，less非常简单，英语不好的同学也不用担心，官方已经有中文文档了，稍微熟悉一下语法就能使用less了，门槛非常低，一天差不多就会用了。</span></p>
+<p><br>
+</p>
+<p><span style="font-size:24px">官网：http://lesscss.cn/</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">现在很多框架都是用了less,比如非常著名的Bootstrap。</span></p>
+<p><span style="font-size:24px">当你多用几次less你就会发现它的可维护性非常强！</span></p>
+<p><span style="font-size:24px">这里强调一下，使用less后你需要维护的是less文件啦，而不是它编译生成的css文件！</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px">OK，下一期讲的是less的编译器koala的使用，这个软件非常之强大，一位了不起的前端大牛制作的，有兴趣的朋友可以先去看看</span></p>
+<p><span style="font-size:24px">容我先跑路了！</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20160804152626371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="font-size:24px"><img src="http://img.blog.csdn.net/20160804152626371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="font-size:24px"><img src="http://img.blog.csdn.net/20160804152626371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="font-size:24px"><img src="http://img.blog.csdn.net/20160804152626371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="font-size:24px"><img src="http://img.blog.csdn.net/20160804152626371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="font-size:24px"><img src="http://img.blog.csdn.net/20160804152626371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="" style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- B
