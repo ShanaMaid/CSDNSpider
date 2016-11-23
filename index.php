@@ -8,9 +8,6 @@ GitHub:ShanaMaid
 Email:uestczeng@email.com
 */
 
-ini_set('max_execution_time', '0');//由于爬虫时间较长，不添加此语句会导致错误  Fatal error: Maximum execution time of 30 seconds ;设置为0无限制时间
-
-//error_reporting(E_ALL ^ E_WARNING);//屏蔽警告
 
 $username = "";//请输入你csdn的用户名
 //如http://blog.csdn.net/shanamaid   即shanamaid
@@ -42,9 +39,7 @@ function SpiderGo($username){
 			  fclose($fp_puts);
 			  echo  $list[0][$j]."        抓取完成<br>";
 		}
-	}
-	
-	
+	}	
 }
 
 
@@ -84,7 +79,6 @@ function getArticleContent($number,$username){
 
 //获取文章列表
 function getArticleList($page,$username){
-
 	$url = 'http://blog.csdn.net/'.$username.'/article/list/'.$page;
 	$content = getWebContent($url);
 	$tag = '/<span class="link_title">[\w\W]*?<\/span>/';
@@ -107,7 +101,6 @@ function getArticleList($page,$username){
 //提取-文章内容中的图片
 function getImage($content){
 	$tag = '/http:\/\/img.blog.csdn.net\/.*?\/Center/'; 
-	//'/<img src=".*" alt="">/';
 	preg_match_all($tag, $content, $result);//筛选出图片
 	return $result[0];//图片链接数组
 }
@@ -115,7 +108,6 @@ function getImage($content){
 
 //替换-文章内容中的图片链接为本地
 function replaceImgUrl($content,$local_url){
-	
 	$tag = '/http:\/\/img.blog.csdn.net\/.*?\/Center/'; 
 	$tag_array = array();
 	for ($i=0; $i < sizeof($local_url) ; $i++) { 
@@ -144,8 +136,7 @@ function downloadImg($url,$id,$imgName){
 	}
 }
 
-function trimall($str)//删除空格
-{
+function trimall($str){
     $qian=array(" ","　","\t","\n","\r");
     $hou=array("","","","","");
     return str_replace($qian,$hou,$str); 
@@ -168,7 +159,6 @@ function initUrl($length,$id){
 	}
 	return $result;
 }
-
 
 
 SpiderGo($username);
